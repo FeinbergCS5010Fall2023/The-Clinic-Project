@@ -1,0 +1,925 @@
+Enter a file you want to read: clinic-2.txt
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+4
+Please enter the First Name of the patient:
+Fatima
+Please enter the Last Name of the patient:
+Follicle
+Please enter the First Name of the Staff you want assigned to Fatima
+Amy
+Please enter the Last Name of the Staff you want assigned to Fatima
+Anguish
+Amy has been assigned to Fatima
+Do you want to assign staff to another patient? (yes/no)
+no
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+1
+Please enter the First Name of the client:Phil
+Please enter the Last Name of the client:Askander
+Please enter the Date Of Birth of the Client in this format (MM/DD/YYYY):01/06/2001
+What symptoms does the patient have?Cold
+And can you tell me what their body temperature is in celsius?
+99
+Welcome to the clinic Phil Askander 
+You have been placed in the Waiting Room!
+Do you want to register another patient? (yes/no)
+no
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Cold
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+10
+--------------------------------------------------------------------------
+Staff: Dr. Amy Anguish
+Clients assigned: 
+ Follicle, Fatima
+Total number of assigned patients ever: 1
+--------------------------------------------------------------------------
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Cold
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+4
+Please enter the First Name of the patient:
+Phil
+Please enter the Last Name of the patient:
+Askander
+Please enter the First Name of the Staff you want assigned to Phil
+Amy
+Please enter the Last Name of the Staff you want assigned to Phil
+Anguish
+Amy has been assigned to Phil
+Do you want to assign staff to another patient? (yes/no)
+no
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Cold
+Dr. Amy Anguish
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+10
+--------------------------------------------------------------------------
+Staff: Dr. Amy Anguish
+Clients assigned: 
+ Follicle, Fatima
+ Askander, Phil
+Total number of assigned patients ever: 2
+--------------------------------------------------------------------------
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Cold
+Dr. Amy Anguish
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+15
+--------------------------------------------------------------------------
+Staff: Nurse Denise Danger
+Clients assigned: 
+Total number of assigned patients ever: 0
+Staff: Nurse Evan Emergency
+Clients assigned: 
+Total number of assigned patients ever: 0
+Staff: Dr. Amy Anguish
+Clients assigned: 
+ Follicle, Fatima
+ Askander, Phil
+Total number of assigned patients ever: 2
+Staff: Frank Febrile
+Clients assigned: 
+Total number of assigned patients ever: 0
+Staff: Dr. Benny Bruise
+Clients assigned: 
+Total number of assigned patients ever: 0
+Staff: Nurse Camila Crisis
+Clients assigned: 
+Total number of assigned patients ever: 0
+--------------------------------------------------------------------------
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Cold
+Dr. Amy Anguish
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+13
+There are no patients that haven't visited the clinic for more than 365 days from today.
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Cold
+Dr. Amy Anguish
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+14
+--------------------------------
+--------------------------------
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Cold
+Dr. Amy Anguish
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+3
+Please enter the First Name of the patient you wish to discharge:Phil
+Please enter the Last Name of the patient you wish to discharge:Askander
+Please enter the First Name of the Staff who approved this:Amy
+Please enter the Last Name of the Staff who approved this:Anguish
+Phil Askander has been discharged, approved by: Amy Anguish
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+1
+Please enter the First Name of the client:Phil
+Please enter the Last Name of the client:Askander
+Please enter the Date Of Birth of the Client in this format (MM/DD/YYYY):01/06/2001
+What symptoms does the patient have?Fever
+And can you tell me what their body temperature is in celsius?
+88
+Welcome Back! Phil
+You have been placed in the Waiting Room!Do you want to register another patient? (yes/no)
+no
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+14
+2023-11-11T17:24
+2023-11-11T17:27:17.853328
+0
+--------------------------------
+Phil Askander
+--------------------------------
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+12
+Please enter the First Name of the patient's First Name: Phil
+Please enter the Last Name of the patient's Last Name: Askander
+Below is the list of staff members assigned to Phil:
+This patient does not have any staff members assigned to them.
+Would you like to try another patient? (yes/no)no
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+4
+Please enter the First Name of the patient:
+Phil
+Please enter the Last Name of the patient:
+Askander
+Please enter the First Name of the Staff you want assigned to Phil
+Amy
+Please enter the Last Name of the Staff you want assigned to Phil
+Anguish
+Amy has been assigned to Phil
+Do you want to assign staff to another patient? (yes/no)
+no
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+Dr. Amy Anguish
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+12
+Please enter the First Name of the patient's First Name: Phil
+Please enter the Last Name of the patient's Last Name: Askander
+Below is the list of staff members assigned to Phil:
+Dr. Amy Anguish
+Please enter the First Name of the staff member:Amy
+Please enter the Last Name of the Staff who approved this:Anguish
+Amy has been unassigned to Phil.
+ would you like to remove another clinical staff member from a patient? (yes/no)no
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+10
+--------------------------------------------------------------------------
+Staff: Dr. Amy Anguish
+Clients assigned: 
+ Follicle, Fatima
+Total number of assigned patients ever: 2
+--------------------------------------------------------------------------
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+Dr. Amy Anguish
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+11
+Please enter the First Name of the Staff Member you want to remove:Amy
+Please enter the Last Name of the Staff Member you want to remove:Anguish
+Dr. Amy has been removed from the clinic.
+ Would you like to remove another clinical staff member?
+no
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+10
+--------------------------------------------------------------------------
+There are no Staff members assigned to any patients at the moment.
+--------------------------------------------------------------------------
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+15
+--------------------------------------------------------------------------
+Staff: Nurse Denise Danger
+Clients assigned: 
+Total number of assigned patients ever: 0
+Staff: Nurse Evan Emergency
+Clients assigned: 
+Total number of assigned patients ever: 0
+Staff: Frank Febrile
+Clients assigned: 
+Total number of assigned patients ever: 0
+Staff: Dr. Benny Bruise
+Clients assigned: 
+Total number of assigned patients ever: 0
+Staff: Nurse Camila Crisis
+Clients assigned: 
+Total number of assigned patients ever: 0
+--------------------------------------------------------------------------
+Room 1
+First Name: Aandi, Last Name: Acute, Date Of Birth: 1/1/1981, Room Number: 1, No Current Record
+First Name: Doug, Last Name: Derm, Date Of Birth: 4/4/1984, Room Number: 1, No Current Record
+First Name: Greg, Last Name: Gastric, Date Of Birth: 7/7/1987, Room Number: 1, No Current Record
+First Name: Phil, Last Name: Askander, Date Of Birth: 01/06/2001, Room Number: 1, Fever
+
+Room 2
+First Name: Beth, Last Name: Bunion, Date Of Birth: 2/2/1982, Room Number: 2, No Current Record
+
+Room 3
+First Name: Clive, Last Name: Cardiac, Date Of Birth: 3/3/1983, Room Number: 3, No Current Record
+
+Room 4
+First Name: Elise, Last Name: Enzyme, Date Of Birth: 5/5/1985, Room Number: 4, No Current Record
+
+Room 5
+First Name: Fatima
+Last Name: Follicle
+ -Date Of Birth: 6/6/1986
+ -Room Number: 5
+ -No Current Record
+
+Please choose what you want to do:
+1: Add Patient
+2: Add Staff
+3: Discharge Patient
+4: Assign Staff To Client
+5: Assign Patient To A New Room
+6: Add A New Room
+7: Show me All Data
+8: Show me Data About A Specific Room
+9: Show me the Medical History of a patient
+10: Show List of Staff members with their patients
+11: Remove Clinical Staff Member
+12: Unassign Clinical Staff Member From Patient
+13: Show the List Of Patients Who Have Not Visited For Over A Year
+14: Show the List of Patients Who Have Visit The Clinic At Least Twice in the last 365 days
+15: Show the List of All Staff Members
+16: Quit
+16
+Game over, thanks for playing
