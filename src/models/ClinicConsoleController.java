@@ -1,9 +1,13 @@
 
 package models;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +22,14 @@ import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 
 /**
  * A console-based controller for managing a clinic's operations.
@@ -34,6 +46,7 @@ public class ClinicConsoleController implements ClinicController {
   private final Appendable out;
   private final Scanner scan;
   private boolean quitGame = false;
+  private JFrame frame;
 
   /**
    * ClinicConsoleController to take in the input and output.
@@ -459,6 +472,92 @@ public class ClinicConsoleController implements ClinicController {
     }
   }
 
+//  /**
+//   * This method generates a visual representation of the clinic layout, including room rectangles
+//   * and associated information. The resulting image is saved as a PNG file named
+//   * "clinic_representation.png". The layout includes the clinic name and individual room details.
+//   * The image is created using a BufferedImage with specified dimensions and graphics operations.
+//   *
+//   * @param clinic The clinic object containing information about rooms and layout details.
+//   */
+//  @Override
+//  public void displayGame(Clinic clinic) {
+//    int width = 300; // Width of the image
+//    int height = 400; // Height of the image
+//    // Create a BufferedImage with the specified width and height
+//    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+//
+//    // Get the Graphics object to draw on the BufferedImage
+//    Graphics2D graphics = (Graphics2D) image.getGraphics();
+//
+//    // Set the background color (e.g., white)
+//    graphics.setColor(Color.WHITE);
+//    graphics.fillRect(0, 0, width, height);
+//
+//    // Set the pen color (e.g., black)
+//    graphics.setColor(Color.BLACK);
+//
+//    // Set a readable font and font size
+//    Font font = new Font("Arial", Font.PLAIN, 15);
+//    graphics.setFont(font);
+//    for (Map.Entry<Integer, int[]> entry : clinic.getRoomKey().entrySet()) {
+//
+//      // Draw the rectangle using the calculated width and height
+//      String res = "";
+//      for (Room room : clinic.getClinicRooms()) {
+//
+//        int x1 = room.getElement(0); // X-coordinate of the top-left corner
+//        int y1 = room.getElement(1); // Y-coordinate of the top-left corner
+//        int x2 = room.getElement(2); // X-coordinate of the bottom-right corner
+//        int y2 = room.getElement(3); // Y-coordinate of the bottom-right corner
+//
+//        int rectX = Math.min(x1 * 10, x2 * 10);
+//        int rectY = Math.min(y1 * 10 + 1, y2 * 10);
+//        int rectWidth = Math.abs(x2 * 10 - x1 * 10);
+//        int rectHeight = Math.abs(y2 * 10 - y1 * 10 + 1);
+//        if (entry.getValue() == room.getId()) {
+//          graphics.setColor(Color.BLACK);
+//          graphics.drawRect(rectX * 10 - 2250, rectY * 10 + 100, rectWidth * 15, rectHeight * 10);
+//          graphics.drawString(room.getRoomName(), rectX * 10 - 2250 + 1, rectY * 10 + 120);
+//          res = clinic.displayRoomInfo(room);
+//          String[] lines = res.split("\n");
+//          int startY = rectY * 10 + 120;
+//          for (String line : lines) {
+//            graphics.drawString(line, rectX * 10 + -2250 + 1, startY + 20);
+//            startY += 20; // Increase Y-coordinate to skip a line
+//          }
+//        }
+//
+//      }
+//
+//      // Draw the rectangle using the corrected coordinates and dimensions
+//
+//    }
+//
+//    // Set the font color for the clinic name
+//    graphics.setColor(Color.RED);
+//    font = new Font("Arial", Font.PLAIN, 100);
+//
+//    graphics.setFont(font);
+//
+//    // Draw the clinic name with better positioning
+//    String clinicName = clinic.getName(); // Replace with your clinic name
+//    int textX = 2750 - 2250;
+//    int textY = 100;
+//    graphics.drawString(clinicName, textX, textY);
+//
+//    // Save the BufferedImage to a file
+//    try {
+//      File outputFile = new File("clinic_representation.png");
+//      ImageIO.write(image, "png", outputFile);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//
+//    // Dispose of the Graphics object
+//    graphics.dispose();
+//  }
+  
   /**
    * This method generates a visual representation of the clinic layout, including room rectangles
    * and associated information. The resulting image is saved as a PNG file named
@@ -469,65 +568,105 @@ public class ClinicConsoleController implements ClinicController {
    */
   @Override
   public void displayGame(Clinic clinic) {
-    int width = 2000; // Width of the image
-    int height = 3000; // Height of the image
-    // Create a BufferedImage with the specified width and height
+    int width = 300; // Width of the image
+    int height = 400; // Height of the image
+    
+      frame = new JFrame("Clinic Layout");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      JMenuBar menuBar = createMenuBar(clinic);
+      frame.setJMenuBar(menuBar);
+
+      JPanel contentPane = new JPanel();
+      contentPane.setLayout(new BorderLayout());
+
+      BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+      JLabel label = new JLabel(new ImageIcon(image));
+      
+      frame.setContentPane(contentPane);
+
+      frame.setSize(800, 600);
+      frame.setLocationRelativeTo(null);
+      frame.setVisible(true);
+  }
+
+  private JMenuBar createMenuBar(Clinic clinic) {
+      JMenuBar menuBar = new JMenuBar();
+
+      JMenu aboutMenu = new JMenu("About");
+      JMenuItem aboutItem = new JMenuItem("About Clinic");
+      aboutItem.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              showAboutDialog(clinic);
+          }
+      });
+      aboutMenu.add(aboutItem);
+
+      JMenu roomMapMenu = new JMenu("Room Map");
+      JMenuItem roomMapItem = new JMenuItem("Show Room Map");
+      roomMapItem.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              showRoomMap(clinic);
+          }
+      });
+      roomMapMenu.add(roomMapItem);
+
+      menuBar.add(aboutMenu);
+      menuBar.add(roomMapMenu);
+
+      return menuBar;
+  }
+
+  private BufferedImage createClinicImage(Clinic clinic) {
+    int width = 300; // Width of the image
+    int height = 400; // Height of the image
     BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-    // Get the Graphics object to draw on the BufferedImage
     Graphics2D graphics = (Graphics2D) image.getGraphics();
 
-    // Set the background color (e.g., white)
     graphics.setColor(Color.WHITE);
     graphics.fillRect(0, 0, width, height);
 
-    // Set the pen color (e.g., black)
     graphics.setColor(Color.BLACK);
 
-    // Set a readable font and font size
     Font font = new Font("Arial", Font.PLAIN, 15);
     graphics.setFont(font);
+
+    // Iterate through the clinic's room key to draw room rectangles
     for (Map.Entry<Integer, int[]> entry : clinic.getRoomKey().entrySet()) {
+        String res = "";
+        for (Room room : clinic.getClinicRooms()) {
+            int x1 = room.getElement(0); // X-coordinate of the top-left corner
+            int y1 = room.getElement(1); // Y-coordinate of the top-left corner
+            int x2 = room.getElement(2); // X-coordinate of the bottom-right corner
+            int y2 = room.getElement(3); // Y-coordinate of the bottom-right corner
 
-      // Draw the rectangle using the calculated width and height
-      String res = "";
-      for (Room room : clinic.getClinicRooms()) {
+            int rectX = Math.min(x1 * 10, x2 * 10);
+            int rectY = Math.min(y1 * 10 + 1, y2 * 10);
+            int rectWidth = Math.abs(x2 * 10 - x1 * 10);
+            int rectHeight = Math.abs(y2 * 10 - y1 * 10 + 1);
 
-        int x1 = room.getElement(0); // X-coordinate of the top-left corner
-        int y1 = room.getElement(1); // Y-coordinate of the top-left corner
-        int x2 = room.getElement(2); // X-coordinate of the bottom-right corner
-        int y2 = room.getElement(3); // Y-coordinate of the bottom-right corner
-
-        int rectX = Math.min(x1 * 10, x2 * 10);
-        int rectY = Math.min(y1 * 10 + 1, y2 * 10);
-        int rectWidth = Math.abs(x2 * 10 - x1 * 10);
-        int rectHeight = Math.abs(y2 * 10 - y1 * 10 + 1);
-        if (entry.getValue() == room.getId()) {
-          graphics.setColor(Color.BLACK);
-          graphics.drawRect(rectX * 10 - 2250, rectY * 10 + 100, rectWidth * 15, rectHeight * 10);
-          graphics.drawString(room.getRoomName(), rectX * 10 - 2250 + 1, rectY * 10 + 120);
-          res = clinic.displayRoomInfo(room);
-          String[] lines = res.split("\n");
-          int startY = rectY * 10 + 120;
-          for (String line : lines) {
-            graphics.drawString(line, rectX * 10 + -2250 + 1, startY + 20);
-            startY += 20; // Increase Y-coordinate to skip a line
-          }
+            if (entry.getValue() == room.getId()) {
+                graphics.setColor(Color.BLACK);
+                graphics.drawRect(rectX * 10 - 2250, rectY * 10 + 100, rectWidth * 15, rectHeight * 10);
+                graphics.drawString(room.getRoomName(), rectX * 10 - 2250 + 1, rectY * 10 + 120);
+                res = clinic.displayRoomInfo(room);
+                String[] lines = res.split("\n");
+                int startY = rectY * 10 + 120;
+                for (String line : lines) {
+                    graphics.drawString(line, rectX * 10 + -2250 + 1, startY + 20);
+                    startY += 20; // Increase Y-coordinate to skip a line
+                }
+            }
         }
-
-      }
-
-      // Draw the rectangle using the corrected coordinates and dimensions
-
     }
 
-    // Set the font color for the clinic name
     graphics.setColor(Color.RED);
     font = new Font("Arial", Font.PLAIN, 100);
-
     graphics.setFont(font);
 
-    // Draw the clinic name with better positioning
     String clinicName = clinic.getName(); // Replace with your clinic name
     int textX = 2750 - 2250;
     int textY = 100;
@@ -535,14 +674,27 @@ public class ClinicConsoleController implements ClinicController {
 
     // Save the BufferedImage to a file
     try {
-      File outputFile = new File("clinic_representation.png");
-      ImageIO.write(image, "png", outputFile);
+        File outputFile = new File("clinic_representation.png");
+        ImageIO.write(image, "png", outputFile);
     } catch (IOException e) {
-      e.printStackTrace();
+        e.printStackTrace();
     }
 
-    // Dispose of the Graphics object
     graphics.dispose();
+    return image;
+}
+
+  private void showAboutDialog(Clinic clinic) {
+      JOptionPane.showMessageDialog(frame, "Clinic Name: " + clinic.getName(), "About Clinic", JOptionPane.INFORMATION_MESSAGE);
+  }
+
+  private void showRoomMap(Clinic clinic) {
+      // Code to show the room map
+      BufferedImage roomMapImage = createClinicImage(clinic); // You can replace this with the actual room map
+      JLabel roomMapLabel = new JLabel(new ImageIcon(roomMapImage));
+      frame.setContentPane(roomMapLabel);
+      frame.revalidate();
+      frame.repaint();
   }
 
   /**
