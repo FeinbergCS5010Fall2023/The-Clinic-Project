@@ -42,12 +42,36 @@ public class RectanglePanel extends JPanel {
             int scaledHeight = scaleCoordinate(y2 - y1, panelHeight);
 
             // Draw the rectangles with scaling
-            g.drawRect(scaledX1-500, scaledY1, scaledWidth, scaledHeight);
+            g.drawRect(scaledX1 - 500, scaledY1, scaledWidth, scaledHeight);
 
-            // Draw additional content or labels as needed
-            // ...
+            // Draw the room name next to the rectangle
+            drawText(g, room.getRoomName(), scaledX1 - 500, scaledY1, scaledWidth, scaledHeight);
+            String res = "";
+            res = clinic.displayRoomInfo(room);
+            String[] lines = res.split("\n");
+            int i = 30;
+            for (String line : lines) {
+              drawText(g, line, scaledX1 - 500, scaledY1, scaledWidth, scaledHeight+i);
+              i+=30;
+            }
+
         }
     }
+
+    private void drawText(Graphics g, String text, int x, int y, int width, int height) {
+        // Set font and color for the text
+        Font font = new Font("Arial", Font.PLAIN, 12); 
+        g.setFont(font);
+        g.setColor(Color.BLACK); 
+
+        int textX = x + width + 5; 
+        int textY = y + height / 2;
+
+        // Draw the text
+        g.drawString(text, textX, textY);
+        
+    }
+
     
     private int scaleCoordinate(int coordinate, int panelSize) {
       // Adjust the scaling factor as needed

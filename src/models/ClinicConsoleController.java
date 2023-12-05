@@ -464,92 +464,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController{
     }
   }
 
-//  /**
-//   * This method generates a visual representation of the clinic layout, including room rectangles
-//   * and associated information. The resulting image is saved as a PNG file named
-//   * "clinic_representation.png". The layout includes the clinic name and individual room details.
-//   * The image is created using a BufferedImage with specified dimensions and graphics operations.
-//   *
-//   * @param clinic The clinic object containing information about rooms and layout details.
-//   */
-//  @Override
-//  public void displayGame(Clinic clinic) {
-//    int width = 300; // Width of the image
-//    int height = 400; // Height of the image
-//    // Create a BufferedImage with the specified width and height
-//    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-//
-//    // Get the Graphics object to draw on the BufferedImage
-//    Graphics2D graphics = (Graphics2D) image.getGraphics();
-//
-//    // Set the background color (e.g., white)
-//    graphics.setColor(Color.WHITE);
-//    graphics.fillRect(0, 0, width, height);
-//
-//    // Set the pen color (e.g., black)
-//    graphics.setColor(Color.BLACK);
-//
-//    // Set a readable font and font size
-//    Font font = new Font("Arial", Font.PLAIN, 15);
-//    graphics.setFont(font);
-//    for (Map.Entry<Integer, int[]> entry : clinic.getRoomKey().entrySet()) {
-//
-//      // Draw the rectangle using the calculated width and height
-//      String res = "";
-//      for (Room room : clinic.getClinicRooms()) {
-//
-//        int x1 = room.getElement(0); // X-coordinate of the top-left corner
-//        int y1 = room.getElement(1); // Y-coordinate of the top-left corner
-//        int x2 = room.getElement(2); // X-coordinate of the bottom-right corner
-//        int y2 = room.getElement(3); // Y-coordinate of the bottom-right corner
-//
-//        int rectX = Math.min(x1 * 10, x2 * 10);
-//        int rectY = Math.min(y1 * 10 + 1, y2 * 10);
-//        int rectWidth = Math.abs(x2 * 10 - x1 * 10);
-//        int rectHeight = Math.abs(y2 * 10 - y1 * 10 + 1);
-//        if (entry.getValue() == room.getId()) {
-//          graphics.setColor(Color.BLACK);
-//          graphics.drawRect(rectX * 10 - 2250, rectY * 10 + 100, rectWidth * 15, rectHeight * 10);
-//          graphics.drawString(room.getRoomName(), rectX * 10 - 2250 + 1, rectY * 10 + 120);
-//          res = clinic.displayRoomInfo(room);
-//          String[] lines = res.split("\n");
-//          int startY = rectY * 10 + 120;
-//          for (String line : lines) {
-//            graphics.drawString(line, rectX * 10 + -2250 + 1, startY + 20);
-//            startY += 20; // Increase Y-coordinate to skip a line
-//          }
-//        }
-//
-//      }
-//
-//      // Draw the rectangle using the corrected coordinates and dimensions
-//
-//    }
-//
-//    // Set the font color for the clinic name
-//    graphics.setColor(Color.RED);
-//    font = new Font("Arial", Font.PLAIN, 100);
-//
-//    graphics.setFont(font);
-//
-//    // Draw the clinic name with better positioning
-//    String clinicName = clinic.getName(); // Replace with your clinic name
-//    int textX = 2750 - 2250;
-//    int textY = 100;
-//    graphics.drawString(clinicName, textX, textY);
-//
-//    // Save the BufferedImage to a file
-//    try {
-//      File outputFile = new File("clinic_representation.png");
-//      ImageIO.write(image, "png", outputFile);
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//
-//    // Dispose of the Graphics object
-//    graphics.dispose();
-//  }
-  
+
   /**
    * This method generates a visual representation of the clinic layout, including room rectangles
    * and associated information. The resulting image is saved as a PNG file named
@@ -629,7 +544,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController{
         frame.setJMenuBar(menuBar);
 
         RectanglePanel rectanglePanel = new RectanglePanel(clinic);
-        rectanglePanel.setPreferredSize(new Dimension(1000, 1000)); // Adjust the size as needed
+        rectanglePanel.setPreferredSize(new Dimension(1000, 800)); // Adjust the size as needed
 
         JScrollPane scrollPane = new JScrollPane(rectanglePanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
