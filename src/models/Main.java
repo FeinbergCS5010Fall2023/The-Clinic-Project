@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -14,6 +15,7 @@ public class Main {
     private static JPanel contentPane;
 
     public static void main(String[] args) {
+      
         SwingUtilities.invokeLater(() -> {
             frame = new JFrame("The Clinic Project");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +26,7 @@ public class Main {
             contentPane = createAboutPanel();
             frame.setContentPane(contentPane);
 
-            frame.setMinimumSize(new Dimension(300, 300)); // Set minimum size
+            frame.setMinimumSize(new Dimension(800, 600)); // Set minimum size
 
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
@@ -36,13 +38,6 @@ public class Main {
 
         JMenu fileMenu = new JMenu("File");
 
-        JMenuItem loadFileItem = new JMenuItem("Load Clinic File");
-        loadFileItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loadClinicFile();
-            }
-        });
 
         JMenuItem clearRecordsItem = new JMenuItem("Clear Records");
         clearRecordsItem.addActionListener(new ActionListener() {
@@ -59,7 +54,14 @@ public class Main {
                 System.exit(0);
             }
         });
-
+        
+        JMenuItem loadFileItem = new JMenuItem("Load Clinic File");
+        loadFileItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadClinicFile();
+            }
+        });
         fileMenu.add(loadFileItem);
         fileMenu.add(clearRecordsItem);
         fileMenu.add(quitItem);
@@ -99,15 +101,16 @@ public class Main {
 
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            
-            Clinic clinic = new Clinic("Test"); // Replace with your logic to load the clinic from the file
-            new ClinicConsoleController(new InputStreamReader(System.in), System.out).displayGame(clinic);
-
+            Clinic clinic = new Clinic("Cybernetic Implant Clinic"); // Replace with your logic to load the clinic from the file
+            Readable input = new InputStreamReader(System.in);
+            Appendable output = System.out;
+            new ClinicConsoleController(input, output).playNewGame(clinic,selectedFile);
             // You may also want to update the about panel or perform other actions
             contentPane.add(createAboutPanel(), BorderLayout.CENTER);
             frame.revalidate();
             frame.repaint();
         }
+        
     }
 
     private static void clearRecords() {
