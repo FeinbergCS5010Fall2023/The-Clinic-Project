@@ -2,13 +2,9 @@
 package models;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.Graphics2D;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -19,17 +15,15 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 
 /**
  * A console-based controller for managing a clinic's operations.
@@ -42,10 +36,10 @@ import javax.swing.ImageIcon;
  * The specific operations and user interactions are defined in the `ClinicController` interface,
  * which this class implements.
  */
-public class ClinicConsoleController implements ClinicController {
+public class ClinicConsoleController extends JFrame implements ClinicController{
+  private static final long serialVersionUID = 1L;
   private final Appendable out;
   private final Scanner scan;
-  private boolean quitGame = false;
   private JFrame frame;
 
   /**
@@ -299,110 +293,118 @@ public class ClinicConsoleController implements ClinicController {
    * @param clinic is the clinic that the game is taking place in.
    * @param input is the file that is being read for the game.
    */
+  
+  public void playNewGame(Clinic clinic, File input) {
+    if (clinic == null) {
+      throw new IllegalArgumentException("Clinic object cannot be null");
+    }
+    clinic.readDataFromFile(input);
+    displayGame(clinic);
+  }
 
   public void playGame(Clinic clinic, File input) {
     if (clinic == null) {
       throw new IllegalArgumentException("Clinic object cannot be null");
     }
     clinic.readDataFromFile(input);
-    while (!quitGame) {
-      displayGame(clinic);
-
-      try {
-        this.out.append(displayAllInfo(clinic));
-        this.out.append("Please choose what you want to do:\n");
-        this.out.append("1: Add Patient\n");
-        this.out.append("2: Add Staff\n");
-        this.out.append("3: Discharge Patient\n");
-        this.out.append("4: Assign Staff To Client\n");
-        this.out.append("5: Assign Patient To A New Room\n");
-        this.out.append("6: Add A New Room\n");
-        this.out.append("7: Show me All Data\n");
-        this.out.append("8: Show me Data About A Specific Room\n");
-        this.out.append("9: Show me the Medical History of a patient\n");
-        this.out.append("10: Show List of Staff members with their patients\n");
-        this.out.append("11: Remove Clinical Staff Member\n");
-        this.out.append("12: Unassign Clinical Staff Member From Patient\n");
-        this.out.append("13: Show the List Of Patients Who Have Not Visited For Over A Year\n");
-        this.out.append("14: Show the List of Patients Who Have Visit The Clinic At Least Twice"
-            + " in the last 365 days\n");
-        this.out.append("15: Show the List of All Staff Members\n");
-        this.out.append("16: Quit\n");
-        int userInput;
-        // userInput = scan.nextInt();
-        userInput = scan.nextInt();
-        if (userInput > 16 || userInput < 1) {
-          throw new IllegalArgumentException("That was not a valid option");
-        }
-        // Handle user input based on the selected option
-        switch (userInput) {
-          case 1:
-            handleAddPatient(clinic);
-            break;
-          case 2:
-            handleAddStaff(clinic);
-            break;
-          case 3:
-            handleRemovePatient(clinic);
-            break;
-          case 4:
-            handleAssignStaffToClient(clinic);
-            break;
-          case 5:
-            handleAssignPatientToRoom(clinic);
-            break;
-          case 6:
-            handleAddNewRoom(clinic);
-            break;
-          case 7:
-            handleDisplayAllInfo(clinic);
-            break;
-
-          case 8:
-            handleDisplayRoomInfo(clinic);
-            break;
-
-          case 9:
-            handleViewPatientRecordHistory(clinic);
-            break;
-
-          case 10:
-            handleViewStaff(clinic);
-            break;
-
-          case 11:
-            handleRemoveStaff(clinic);
-            break;
-
-          case 12:
-            handleUnassignStaffFromClient(clinic);
-            break;
-
-          case 13:
-            handleYearNoVisit(clinic);
-            break;
-
-          case 14:
-            handleTwoVisitYear(clinic);
-            break;
-
-          case 15:
-            handleViewAllStaffMembers(clinic);
-            break;
-
-          case 16:
-            quitGame = true;
-            this.out.append("Game over, thanks for playing");
-            break;
-
-          default:
-            continue;
-        }
-
-      } catch (NoSuchElementException | IOException | IllegalArgumentException ioe) {
-        throw new IllegalStateException("Error: " + ioe.getMessage(), ioe);
-      }
-    }
+//    while (!quitGame) {
+//      displayGame(clinic);
+//
+//      try {
+//        this.out.append(displayAllInfo(clinic));
+//        this.out.append("Please choose what you want to do:\n");
+//        this.out.append("1: Add Patient\n");
+//        this.out.append("2: Add Staff\n");
+//        this.out.append("3: Discharge Patient\n");
+//        this.out.append("4: Assign Staff To Client\n");
+//        this.out.append("5: Assign Patient To A New Room\n");
+//        this.out.append("6: Add A New Room\n");
+//        this.out.append("7: Show me All Data\n");
+//        this.out.append("8: Show me Data About A Specific Room\n");
+//        this.out.append("9: Show me the Medical History of a patient\n");
+//        this.out.append("10: Show List of Staff members with their patients\n");
+//        this.out.append("11: Remove Clinical Staff Member\n");
+//        this.out.append("12: Unassign Clinical Staff Member From Patient\n");
+//        this.out.append("13: Show the List Of Patients Who Have Not Visited For Over A Year\n");
+//        this.out.append("14: Show the List of Patients Who Have Visit The Clinic At Least Twice"
+//            + " in the last 365 days\n");
+//        this.out.append("15: Show the List of All Staff Members\n");
+//        this.out.append("16: Quit\n");
+//        int userInput;
+//        // userInput = scan.nextInt();
+//        userInput = scan.nextInt();
+//        if (userInput > 16 || userInput < 1) {
+//          throw new IllegalArgumentException("That was not a valid option");
+//        }
+//        // Handle user input based on the selected option
+//        switch (userInput) {
+//          case 1:
+//            handleAddPatient(clinic);
+//            break;
+//          case 2:
+//            handleAddStaff(clinic);
+//            break;
+//          case 3:
+//            handleRemovePatient(clinic);
+//            break;
+//          case 4:
+//            handleAssignStaffToClient(clinic);
+//            break;
+//          case 5:
+//            handleAssignPatientToRoom(clinic);
+//            break;
+//          case 6:
+//            handleAddNewRoom(clinic);
+//            break;
+//          case 7:
+//            handleDisplayAllInfo(clinic);
+//            break;
+//
+//          case 8:
+//            handleDisplayRoomInfo(clinic);
+//            break;
+//
+//          case 9:
+//            handleViewPatientRecordHistory(clinic);
+//            break;
+//
+//          case 10:
+//            handleViewStaff(clinic);
+//            break;
+//
+//          case 11:
+//            handleRemoveStaff(clinic);
+//            break;
+//
+//          case 12:
+//            handleUnassignStaffFromClient(clinic);
+//            break;
+//
+//          case 13:
+//            handleYearNoVisit(clinic);
+//            break;
+//
+//          case 14:
+//            handleTwoVisitYear(clinic);
+//            break;
+//
+//          case 15:
+//            handleViewAllStaffMembers(clinic);
+//            break;
+//
+//          case 16:
+//            quitGame = true;
+//            this.out.append("Game over, thanks for playing");
+//            break;
+//
+//          default:
+//            continue;
+//        }
+//
+//      } catch (NoSuchElementException | IOException | IllegalArgumentException ioe) {
+//        throw new IllegalStateException("Error: " + ioe.getMessage(), ioe);
+//      }
+//    }
 
   }
 
@@ -437,16 +439,6 @@ public class ClinicConsoleController implements ClinicController {
 
   }
 
-  private void handleTwoVisitYear(Clinic clinic) throws IOException {
-    String list = clinic.isPatientOneYearIn();
-
-    try {
-      this.out.append(list);
-    } catch (IllegalArgumentException e) {
-      this.out.append("Error: " + e.getMessage() + ", please try again.");
-    }
-
-  }
 
   /**
    * This method handles the retrieval and display of a list of patients who have not visited the
@@ -472,92 +464,7 @@ public class ClinicConsoleController implements ClinicController {
     }
   }
 
-//  /**
-//   * This method generates a visual representation of the clinic layout, including room rectangles
-//   * and associated information. The resulting image is saved as a PNG file named
-//   * "clinic_representation.png". The layout includes the clinic name and individual room details.
-//   * The image is created using a BufferedImage with specified dimensions and graphics operations.
-//   *
-//   * @param clinic The clinic object containing information about rooms and layout details.
-//   */
-//  @Override
-//  public void displayGame(Clinic clinic) {
-//    int width = 300; // Width of the image
-//    int height = 400; // Height of the image
-//    // Create a BufferedImage with the specified width and height
-//    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-//
-//    // Get the Graphics object to draw on the BufferedImage
-//    Graphics2D graphics = (Graphics2D) image.getGraphics();
-//
-//    // Set the background color (e.g., white)
-//    graphics.setColor(Color.WHITE);
-//    graphics.fillRect(0, 0, width, height);
-//
-//    // Set the pen color (e.g., black)
-//    graphics.setColor(Color.BLACK);
-//
-//    // Set a readable font and font size
-//    Font font = new Font("Arial", Font.PLAIN, 15);
-//    graphics.setFont(font);
-//    for (Map.Entry<Integer, int[]> entry : clinic.getRoomKey().entrySet()) {
-//
-//      // Draw the rectangle using the calculated width and height
-//      String res = "";
-//      for (Room room : clinic.getClinicRooms()) {
-//
-//        int x1 = room.getElement(0); // X-coordinate of the top-left corner
-//        int y1 = room.getElement(1); // Y-coordinate of the top-left corner
-//        int x2 = room.getElement(2); // X-coordinate of the bottom-right corner
-//        int y2 = room.getElement(3); // Y-coordinate of the bottom-right corner
-//
-//        int rectX = Math.min(x1 * 10, x2 * 10);
-//        int rectY = Math.min(y1 * 10 + 1, y2 * 10);
-//        int rectWidth = Math.abs(x2 * 10 - x1 * 10);
-//        int rectHeight = Math.abs(y2 * 10 - y1 * 10 + 1);
-//        if (entry.getValue() == room.getId()) {
-//          graphics.setColor(Color.BLACK);
-//          graphics.drawRect(rectX * 10 - 2250, rectY * 10 + 100, rectWidth * 15, rectHeight * 10);
-//          graphics.drawString(room.getRoomName(), rectX * 10 - 2250 + 1, rectY * 10 + 120);
-//          res = clinic.displayRoomInfo(room);
-//          String[] lines = res.split("\n");
-//          int startY = rectY * 10 + 120;
-//          for (String line : lines) {
-//            graphics.drawString(line, rectX * 10 + -2250 + 1, startY + 20);
-//            startY += 20; // Increase Y-coordinate to skip a line
-//          }
-//        }
-//
-//      }
-//
-//      // Draw the rectangle using the corrected coordinates and dimensions
-//
-//    }
-//
-//    // Set the font color for the clinic name
-//    graphics.setColor(Color.RED);
-//    font = new Font("Arial", Font.PLAIN, 100);
-//
-//    graphics.setFont(font);
-//
-//    // Draw the clinic name with better positioning
-//    String clinicName = clinic.getName(); // Replace with your clinic name
-//    int textX = 2750 - 2250;
-//    int textY = 100;
-//    graphics.drawString(clinicName, textX, textY);
-//
-//    // Save the BufferedImage to a file
-//    try {
-//      File outputFile = new File("clinic_representation.png");
-//      ImageIO.write(image, "png", outputFile);
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//
-//    // Dispose of the Graphics object
-//    graphics.dispose();
-//  }
-  
+
   /**
    * This method generates a visual representation of the clinic layout, including room rectangles
    * and associated information. The resulting image is saved as a PNG file named
@@ -568,8 +475,6 @@ public class ClinicConsoleController implements ClinicController {
    */
   @Override
   public void displayGame(Clinic clinic) {
-    int width = 300; // Width of the image
-    int height = 400; // Height of the image
     
       frame = new JFrame("Clinic Layout");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -580,14 +485,14 @@ public class ClinicConsoleController implements ClinicController {
       JPanel contentPane = new JPanel();
       contentPane.setLayout(new BorderLayout());
 
-      BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-      JLabel label = new JLabel(new ImageIcon(image));
       
       frame.setContentPane(contentPane);
 
       frame.setSize(800, 600);
       frame.setLocationRelativeTo(null);
       frame.setVisible(true);
+      
+     
   }
 
   private JMenuBar createMenuBar(Clinic clinic) {
@@ -619,83 +524,42 @@ public class ClinicConsoleController implements ClinicController {
       return menuBar;
   }
 
-  private BufferedImage createClinicImage(Clinic clinic) {
-    int width = 300; // Width of the image
-    int height = 400; // Height of the image
-    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-
-    Graphics2D graphics = (Graphics2D) image.getGraphics();
-
-    graphics.setColor(Color.WHITE);
-    graphics.fillRect(0, 0, width, height);
-
-    graphics.setColor(Color.BLACK);
-
-    Font font = new Font("Arial", Font.PLAIN, 15);
-    graphics.setFont(font);
-
-    // Iterate through the clinic's room key to draw room rectangles
-    for (Map.Entry<Integer, int[]> entry : clinic.getRoomKey().entrySet()) {
-        String res = "";
-        for (Room room : clinic.getClinicRooms()) {
-            int x1 = room.getElement(0); // X-coordinate of the top-left corner
-            int y1 = room.getElement(1); // Y-coordinate of the top-left corner
-            int x2 = room.getElement(2); // X-coordinate of the bottom-right corner
-            int y2 = room.getElement(3); // Y-coordinate of the bottom-right corner
-
-            int rectX = Math.min(x1 * 10, x2 * 10);
-            int rectY = Math.min(y1 * 10 + 1, y2 * 10);
-            int rectWidth = Math.abs(x2 * 10 - x1 * 10);
-            int rectHeight = Math.abs(y2 * 10 - y1 * 10 + 1);
-
-            if (entry.getValue() == room.getId()) {
-                graphics.setColor(Color.BLACK);
-                graphics.drawRect(rectX * 10 - 2250, rectY * 10 + 100, rectWidth * 15, rectHeight * 10);
-                graphics.drawString(room.getRoomName(), rectX * 10 - 2250 + 1, rectY * 10 + 120);
-                res = clinic.displayRoomInfo(room);
-                String[] lines = res.split("\n");
-                int startY = rectY * 10 + 120;
-                for (String line : lines) {
-                    graphics.drawString(line, rectX * 10 + -2250 + 1, startY + 20);
-                    startY += 20; // Increase Y-coordinate to skip a line
-                }
-            }
-        }
-    }
-
-    graphics.setColor(Color.RED);
-    font = new Font("Arial", Font.PLAIN, 100);
-    graphics.setFont(font);
-
-    String clinicName = clinic.getName(); // Replace with your clinic name
-    int textX = 2750 - 2250;
-    int textY = 100;
-    graphics.drawString(clinicName, textX, textY);
-
-    // Save the BufferedImage to a file
-    try {
-        File outputFile = new File("clinic_representation.png");
-        ImageIO.write(image, "png", outputFile);
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-
-    graphics.dispose();
-    return image;
-}
-
+ 
   private void showAboutDialog(Clinic clinic) {
-      JOptionPane.showMessageDialog(frame, "Clinic Name: " + clinic.getName(), "About Clinic", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(frame, "Clinic Name: " + clinic.getName() 
+      + "\nNumber of patients: " + clinic.getClinicClients().size() + "\nNumber of Clinical Staff Members: " 
+      + clinic.getClinicStaffs().size(), "About Clinic", JOptionPane.INFORMATION_MESSAGE);
+      
   }
+
+
 
   private void showRoomMap(Clinic clinic) {
-      // Code to show the room map
-      BufferedImage roomMapImage = createClinicImage(clinic); // You can replace this with the actual room map
-      JLabel roomMapLabel = new JLabel(new ImageIcon(roomMapImage));
-      frame.setContentPane(roomMapLabel);
-      frame.revalidate();
-      frame.repaint();
-  }
+    SwingUtilities.invokeLater(() -> {
+        JFrame frame = new JFrame("Scrollable Rectangle Panel Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Create menu bar and add it to the frame
+        JMenuBar menuBar = createMenuBar(clinic);
+        frame.setJMenuBar(menuBar);
+
+        RectanglePanel rectanglePanel = new RectanglePanel(clinic);
+        rectanglePanel.setPreferredSize(new Dimension(1000, 800)); // Adjust the size as needed
+
+        JScrollPane scrollPane = new JScrollPane(rectanglePanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        frame.add(scrollPane);
+        frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        scrollPane.revalidate();
+        scrollPane.repaint();
+    });
+}
+
+
 
   /**
    * This method handles the unassignment of a staff member from a client in the clinic. It prompts
