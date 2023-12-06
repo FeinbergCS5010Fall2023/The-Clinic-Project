@@ -654,6 +654,13 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
    */
   @Override
   public void handleUnassignStaffFromClient(Clinic clinic) throws IOException {
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        new UnassignStaffToPatient(clinic);
+      }
+  });
+    /*
     try {
       boolean firstCheck = false;
       Client patient = null;
@@ -749,6 +756,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
     } catch (IllegalArgumentException e) {
       this.out.append("Error: " + e.getMessage() + ", please try again.");
     }
+    */
   }
 
   /**
@@ -979,76 +987,14 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
    */
 
   public void handleAddPatient(Clinic clinic) throws IOException {
-
-    //    boolean registerAnotherPatient = true;
-//
-//    while (registerAnotherPatient) {
-//      try {
-//        this.out.append("Please enter the First Name of the client:");
-//        String firstName = getValidNameInput();
-//        this.out.append("Please enter the Last Name of the client:");
-//        String lastName = getValidNameInput();
-//        this.out
-//            .append("Please enter the Date Of Birth of the Client in this format (MM/DD/YYYY):");
-//        String birthday = getValidDateInput();
-//
-//        this.out.append("What symptoms does the patient have?");
-//        String symptoms = getValidNameInput();
-//
-//        BigDecimal temp = null;
-//        try {
-//          this.out.append("And can you tell me what their body temperature is in celsius?\n");
-//          temp = getValidBodyTemperature();
-//        } catch (InputMismatchException e) {
-//          this.out
-//              .append("Error: Invalid input for body temperature. Please enter a valid number.\n");
-//          // Consume the invalid input
-//          // Add a recursive call to prompt the user to try again
-//          temp = scan.nextBigDecimal();
-//        }
-//        boolean isValid = false;
-//        for (int i = 0; i < clinic.getClinicClients().size(); i++) {
-//          if (clinic.getClinicClients().get(i).getFirstName().equals(firstName)
-//              && clinic.getClinicClients().get(i).getLastName().equals(lastName)) {
-//            this.out.append("This patient is already in the clinic.");
-//            isValid = true;
-//          }
-//        }
-//
-//        if (!isValid) {
-//          LocalDateTime now = LocalDateTime.now();
-//          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy:HH:mm");
-//          String formattedDateTime = now.format(formatter);
-//          VisitRecord record = new VisitRecord(formattedDateTime, symptoms, temp);
-//
-//          Client client = registerClientWithVisitRecord(firstName, lastName, birthday, record,
-//              clinic);
-//          client.setRecord(record);
-//          client.getRecordHistory().add(record);
-//        }
-//
-//        // this.out.append("Welcome to the clinic " + firstName + " " + lastName + "\nYou have been
-//        // placed in the Waiting Room!\n");
-//
-//        this.out.append("Do you want to register another patient? (yes/no)\n");
-//        // Consume the newline
-//        String registerAnother = getValidNameInput();
-//        if (!"yes".equalsIgnoreCase(registerAnother)) {
-//          registerAnotherPatient = false;
-//        }
-//
-//      } catch (IllegalArgumentException | IllegalStateException e) {
-//        this.out.append("Error: " + e.getMessage() + ", please try again.\n");
-//      }
-//    }
-    SwingUtilities.invokeLater(() -> {
-      RegisterPatient registerPatientFrame = new RegisterPatient(clinic);
-
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        new RegisterPatient(clinic);
+      }
   });
-    showRoomMap(clinic);
-
-
   }
+
   /**
    * Method handels adding a staff to the clinic.
    * 
@@ -1110,78 +1056,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       }
   });
     showRoomMap(clinic);
-//    try {
-//      boolean firstCheck = false;
-//      Client patient = null;
-//      String dischargeFirstName = "";
-//      String dischargeLastName = "";
-//      String disChargeStaffFirstName = "";
-//      String disChargeStaffLastName = "";
-//
-//      while (!firstCheck) {
-//        this.out.append("Please enter the First Name of the patient you wish to discharge:");
-//        dischargeFirstName = getValidNameInput();
-//
-//        this.out.append("Please enter the Last Name of the patient you wish to discharge:");
-//        dischargeLastName = getValidNameInput();
-//
-//        for (Client client : clinic.getClinicClients()) {
-//          if (client.getFirstName().contains(dischargeFirstName)
-//              && client.getLastName().contains(dischargeLastName)) {
-//            patient = client;
-//            firstCheck = true;
-//            break;
-//          }
-//        }
-//
-//        if (!firstCheck) {
-//          this.out.append("Patient doesn't exist. Do you want to try again? (yes/no)");
-//          String tryAgain = scan.next();
-//          if (!"yes".equalsIgnoreCase(tryAgain)) {
-//            return; // Return without removing a patient
-//          }
-//        }
-//      }
-//
-//      boolean secondCheck = false;
-//      Staff staffApproval = null;
-//
-//      while (!secondCheck) {
-//        this.out.append("Please enter the First Name of the Staff who approved this:");
-//        disChargeStaffFirstName = getValidNameInput();
-//
-//        this.out.append("Please enter the Last Name of the Staff who approved this:");
-//        disChargeStaffLastName = getValidNameInput();
-//
-//        for (Staff staff : clinic.getClinicStaffs()) {
-//          if (staff.getFirstName().contains(disChargeStaffFirstName)
-//              && staff.getLastName().contains(disChargeStaffLastName)) {
-//            if (staff.getFirstName().contains("Dr.")) {
-//              staffApproval = staff;
-//              secondCheck = true;
-//              break;
-//            }
-//          }
-//        }
-//
-//        if (!secondCheck) {
-//          this.out.append("Staff doesn't exist or is not approved to discharge patients."
-//              + " Do you want to try again? (yes/no)");
-//          String tryAgain = getValidNameInput();
-//          if (!"yes".equalsIgnoreCase(tryAgain)) {
-//            return; // Return without removing a patient
-//          }
-//        }
-//      }
-//
-//      sendPatientHome(patient, staffApproval, clinic);
-//      this.out.append(
-//          dischargeFirstName + ' ' + dischargeLastName + " has been discharged, approved by: "
-//              + disChargeStaffFirstName + ' ' + disChargeStaffLastName + "\n");
-//
-//    } catch (IllegalArgumentException e) {
-//      this.out.append("Error: " + e.getMessage() + ", please try again.");
-//    }
+
   }
 
   /**
@@ -1191,91 +1066,13 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
    */
 
   public void handleAssignStaffToClient(Clinic clinic) throws IOException {
-    try {
-      boolean firstCheck = false;
-      Client patient = null;
-      String firstName = "";
-      String lastName = "";
-
-      while (!firstCheck) {
-        this.out.append("Please enter the First Name of the patient:\n");
-        firstName = getValidNameInput();
-
-        this.out.append("Please enter the Last Name of the patient:\n");
-        lastName = getValidNameInput();
-
-        for (Client client : clinic.getClinicClients()) {
-          if (client.getFirstName().contains(firstName)
-              && client.getLastName().contains(lastName)) {
-            patient = client;
-            firstCheck = true;
-            break;
-          }
+    
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          new AssignStaffToPatient(clinic);
         }
-
-        if (!firstCheck) {
-          this.out.append("Patient doesn't exist. Do you want to try again? (yes/no)");
-          String tryAgain = getValidNameInput();
-          if ("no".equalsIgnoreCase(tryAgain)) {
-            return; // Return without removing a patient
-          }
-        }
-      }
-
-      boolean secondCheck = false;
-      Staff staffApproval = null;
-      String staffFirstName = "";
-      String staffLastName = "";
-
-      while (!secondCheck) {
-        this.out.append(
-            "Please enter the First Name of the Staff you want assigned to " + firstName + "\n");
-        staffFirstName = getValidNameInput();
-
-        this.out.append(
-            "Please enter the Last Name of the Staff you want assigned to " + firstName + "\n");
-        staffLastName = getValidNameInput();
-
-        for (Staff staff : clinic.getClinicStaffs()) {
-          if (staff.getFirstName().contains(staffFirstName)
-              && staff.getLastName().contains(staffLastName)) {
-            staffApproval = staff;
-            secondCheck = true;
-            break;
-          }
-        }
-
-        if (!secondCheck) {
-          this.out.append("Staff doesn't exist. Do you want to try again? (yes/no)");
-          String tryAgain = scan.next();
-          if (!"yes".equalsIgnoreCase(tryAgain)) {
-            return;
-          }
-        }
-      }
-
-      if (assignStaffToPatient(clinic, staffApproval, patient)) {
-        this.out.append(staffFirstName + " has been assigned to " + firstName + "\n");
-      }
-
-      boolean check = false;
-      while (check == false) {
-        this.out.append("Do you want to assign staff to another patient? (yes/no)\n");
-        String assignAnotherResponse = scan.next();
-
-        if ("yes".equalsIgnoreCase(assignAnotherResponse)) {
-
-          // If the user wants to assign staff to another patient, call the method again recursively
-          handleAssignStaffToClient(clinic);
-        }
-        if ("no".equalsIgnoreCase(assignAnotherResponse)) {
-
-          check = true;
-        }
-      }
-    } catch (IllegalArgumentException e) {
-      System.out.println("Error: " + e.getMessage() + ", please try again.");
-    }
+    });
   }
 
   /**
