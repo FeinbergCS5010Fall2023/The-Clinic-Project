@@ -52,6 +52,9 @@ public class UnassignStaffToPatient extends JFrame{
     // Set the size of the window
     setSize(300, 150);
 
+ // Center the window on the screen
+    setLocationRelativeTo(null);
+
     // Set the window to be visible
     setVisible(true);
     

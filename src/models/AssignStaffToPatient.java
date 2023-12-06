@@ -47,6 +47,8 @@ public class AssignStaffToPatient extends JFrame{
     // Set the size of the window
     setSize(300, 150);
 
+    setLocationRelativeTo(null);
+
     // Set the window to be visible
     setVisible(true);
 }

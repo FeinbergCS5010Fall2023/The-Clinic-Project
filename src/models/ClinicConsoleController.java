@@ -660,103 +660,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
         new UnassignStaffToPatient(clinic);
       }
   });
-    /*
-    try {
-      boolean firstCheck = false;
-      Client patient = null;
-      String dischargeFirstName = "";
-      String dischargeLastName = "";
-      String disChargeStaffFirstName = "";
-      String disChargeStaffLastName = "";
-      int count = 0;
-
-      while (!firstCheck) {
-        this.out.append("Please enter the First Name of the patient's First Name: ");
-        dischargeFirstName = getValidNameInput();
-
-        this.out.append("Please enter the Last Name of the patient's Last Name: ");
-        dischargeLastName = getValidNameInput();
-
-        for (Client client : clinic.getClinicClients()) {
-          if (client.getFirstName().contains(dischargeFirstName)
-              && client.getLastName().contains(dischargeLastName)) {
-            patient = client;
-            firstCheck = true;
-            break;
-          }
-        }
-
-        if (!firstCheck) {
-          this.out.append("Patient doesn't exist. Do you want to try again? (yes/no)");
-          String tryAgain = scan.next();
-          if (!"yes".equalsIgnoreCase(tryAgain)) {
-            return; // Return without removing a patient
-          }
-        }
-      }
-
-      this.out
-          .append("Below is the list of staff members assigned to " + dischargeFirstName + ":\n");
-
-      for (Entry<Staff, ArrayList<Client>> entry : clinic.getStaffKey().entrySet()) {
-        for (int i = 0; i < entry.getValue().size(); i++) {
-          if (entry.getValue().contains(patient)) {
-            count++;
-            this.out
-                .append(entry.getKey().getFirstName() + " " + entry.getKey().getLastName() + "\n");
-          }
-        }
-      }
-
-      if (count == 0) {
-        this.out.append("This patient does not have any staff members assigned to them."
-            + "\nWould you like to try another patient? (yes/no)");
-        String tryAgain = getValidNameInput();
-        if (!"yes".equalsIgnoreCase(tryAgain)) {
-          return; // Return without removing a patient
-        } else {
-          handleUnassignStaffFromClient(clinic);
-        }
-      }
-
-      boolean secondCheck = false;
-
-      while (!secondCheck) {
-        this.out.append("Please enter the First Name of the staff member:");
-        disChargeStaffFirstName = getValidNameInput();
-
-        this.out.append("Please enter the Last Name of the Staff who approved this:");
-        disChargeStaffLastName = getValidNameInput();
-
-        for (Staff staff : clinic.getClinicStaffs()) {
-          if (staff.getFirstName().contains(disChargeStaffFirstName)
-              && staff.getLastName().contains(disChargeStaffLastName)) {
-            secondCheck = true;
-            clinic.removeStaffFromClient(staff, patient);
-          }
-        }
-
-        if (!secondCheck) {
-          this.out.append("Staff doesn't exist or is not approved to discharge patients."
-              + " Do you want to try again? (yes/no)");
-          String tryAgain = getValidNameInput();
-          if (!"yes".equalsIgnoreCase(tryAgain)) {
-            return; // Return without removing a patient
-          }
-        }
-      }
-      this.out.append(disChargeStaffFirstName + " has been unassigned to " + dischargeFirstName
-          + ".\n would you like to remove another clinical staff member from a patient? (yes/no)");
-      String tryAgain = getValidNameInput();
-      if (!"yes".equalsIgnoreCase(tryAgain)) {
-        return; // Return without removing a patient
-      } else {
-        handleUnassignStaffFromClient(clinic);
-      }
-    } catch (IllegalArgumentException e) {
-      this.out.append("Error: " + e.getMessage() + ", please try again.");
-    }
-    */
+    
   }
 
   /**
@@ -1055,7 +959,6 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
           new OptionWindow(clinic);
       }
   });
-    showRoomMap(clinic);
 
   }
 
