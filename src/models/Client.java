@@ -285,11 +285,11 @@ public class Client implements ClientFunctionality {
           + record.getChiefComplaint();
     }
     if (record == null) {
-      return "First Name: " + firstName + ", Last Name: " + lastName + ", Date Of Birth: "
-          + birthDateTime + ", Room Number: " + roomNum + ", No Current Record";
+      return "*First Name: " + firstName + ", Last Name: " + lastName + ", Date Of Birth: "
+          + birthDateTime + "\n Room Number: " + roomNum + ", No Current Record";
     }
-    return "First Name: " + firstName + ", Last Name: " + lastName + ", Date Of Birth: "
-        + birthDateTime + ", Room Number: " + roomNum + ", " + record.getChiefComplaint();
+    return "*First Name: " + firstName + ", Last Name: " + lastName + ", Date Of Birth: "
+        + birthDateTime + "\n Room Number: " + roomNum + ", " + record.getChiefComplaint();
   }
 
 }
