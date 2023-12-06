@@ -1103,78 +1103,85 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
    */
 
   public void handleRemovePatient(Clinic clinic) throws IOException {
-    try {
-      boolean firstCheck = false;
-      Client patient = null;
-      String dischargeFirstName = "";
-      String dischargeLastName = "";
-      String disChargeStaffFirstName = "";
-      String disChargeStaffLastName = "";
-
-      while (!firstCheck) {
-        this.out.append("Please enter the First Name of the patient you wish to discharge:");
-        dischargeFirstName = getValidNameInput();
-
-        this.out.append("Please enter the Last Name of the patient you wish to discharge:");
-        dischargeLastName = getValidNameInput();
-
-        for (Client client : clinic.getClinicClients()) {
-          if (client.getFirstName().contains(dischargeFirstName)
-              && client.getLastName().contains(dischargeLastName)) {
-            patient = client;
-            firstCheck = true;
-            break;
-          }
-        }
-
-        if (!firstCheck) {
-          this.out.append("Patient doesn't exist. Do you want to try again? (yes/no)");
-          String tryAgain = scan.next();
-          if (!"yes".equalsIgnoreCase(tryAgain)) {
-            return; // Return without removing a patient
-          }
-        }
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+          new OptionWindow(clinic);
       }
-
-      boolean secondCheck = false;
-      Staff staffApproval = null;
-
-      while (!secondCheck) {
-        this.out.append("Please enter the First Name of the Staff who approved this:");
-        disChargeStaffFirstName = getValidNameInput();
-
-        this.out.append("Please enter the Last Name of the Staff who approved this:");
-        disChargeStaffLastName = getValidNameInput();
-
-        for (Staff staff : clinic.getClinicStaffs()) {
-          if (staff.getFirstName().contains(disChargeStaffFirstName)
-              && staff.getLastName().contains(disChargeStaffLastName)) {
-            if (staff.getFirstName().contains("Dr.")) {
-              staffApproval = staff;
-              secondCheck = true;
-              break;
-            }
-          }
-        }
-
-        if (!secondCheck) {
-          this.out.append("Staff doesn't exist or is not approved to discharge patients."
-              + " Do you want to try again? (yes/no)");
-          String tryAgain = getValidNameInput();
-          if (!"yes".equalsIgnoreCase(tryAgain)) {
-            return; // Return without removing a patient
-          }
-        }
-      }
-
-      sendPatientHome(patient, staffApproval, clinic);
-      this.out.append(
-          dischargeFirstName + ' ' + dischargeLastName + " has been discharged, approved by: "
-              + disChargeStaffFirstName + ' ' + disChargeStaffLastName + "\n");
-
-    } catch (IllegalArgumentException e) {
-      this.out.append("Error: " + e.getMessage() + ", please try again.");
-    }
+  });
+    showRoomMap(clinic);
+//    try {
+//      boolean firstCheck = false;
+//      Client patient = null;
+//      String dischargeFirstName = "";
+//      String dischargeLastName = "";
+//      String disChargeStaffFirstName = "";
+//      String disChargeStaffLastName = "";
+//
+//      while (!firstCheck) {
+//        this.out.append("Please enter the First Name of the patient you wish to discharge:");
+//        dischargeFirstName = getValidNameInput();
+//
+//        this.out.append("Please enter the Last Name of the patient you wish to discharge:");
+//        dischargeLastName = getValidNameInput();
+//
+//        for (Client client : clinic.getClinicClients()) {
+//          if (client.getFirstName().contains(dischargeFirstName)
+//              && client.getLastName().contains(dischargeLastName)) {
+//            patient = client;
+//            firstCheck = true;
+//            break;
+//          }
+//        }
+//
+//        if (!firstCheck) {
+//          this.out.append("Patient doesn't exist. Do you want to try again? (yes/no)");
+//          String tryAgain = scan.next();
+//          if (!"yes".equalsIgnoreCase(tryAgain)) {
+//            return; // Return without removing a patient
+//          }
+//        }
+//      }
+//
+//      boolean secondCheck = false;
+//      Staff staffApproval = null;
+//
+//      while (!secondCheck) {
+//        this.out.append("Please enter the First Name of the Staff who approved this:");
+//        disChargeStaffFirstName = getValidNameInput();
+//
+//        this.out.append("Please enter the Last Name of the Staff who approved this:");
+//        disChargeStaffLastName = getValidNameInput();
+//
+//        for (Staff staff : clinic.getClinicStaffs()) {
+//          if (staff.getFirstName().contains(disChargeStaffFirstName)
+//              && staff.getLastName().contains(disChargeStaffLastName)) {
+//            if (staff.getFirstName().contains("Dr.")) {
+//              staffApproval = staff;
+//              secondCheck = true;
+//              break;
+//            }
+//          }
+//        }
+//
+//        if (!secondCheck) {
+//          this.out.append("Staff doesn't exist or is not approved to discharge patients."
+//              + " Do you want to try again? (yes/no)");
+//          String tryAgain = getValidNameInput();
+//          if (!"yes".equalsIgnoreCase(tryAgain)) {
+//            return; // Return without removing a patient
+//          }
+//        }
+//      }
+//
+//      sendPatientHome(patient, staffApproval, clinic);
+//      this.out.append(
+//          dischargeFirstName + ' ' + dischargeLastName + " has been discharged, approved by: "
+//              + disChargeStaffFirstName + ' ' + disChargeStaffLastName + "\n");
+//
+//    } catch (IllegalArgumentException e) {
+//      this.out.append("Error: " + e.getMessage() + ", please try again.");
+//    }
   }
 
   /**
