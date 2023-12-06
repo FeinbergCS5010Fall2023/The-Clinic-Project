@@ -26,7 +26,7 @@ public class Main {
             contentPane = createAboutPanel();
             frame.setContentPane(contentPane);
 
-            frame.setMinimumSize(new Dimension(800, 600)); // Set minimum size
+            frame.setMinimumSize(new Dimension(500, 500)); // Set minimum size
 
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);

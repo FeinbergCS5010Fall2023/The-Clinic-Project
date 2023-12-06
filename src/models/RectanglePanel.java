@@ -42,7 +42,7 @@ public class RectanglePanel extends JPanel {
             int scaledHeight = scaleCoordinate(y2 - y1, panelHeight);
 
             // Draw the rectangles with scaling
-            g.drawRect(scaledX1 - 500, scaledY1, scaledWidth, scaledHeight);
+            g.drawRect(scaledX1 - 2000, scaledY1, scaledWidth+90, scaledHeight);
 
             // Draw the room name next to the rectangle
             drawText(g, room.getRoomName(), scaledX1 - 500, scaledY1, scaledWidth, scaledHeight);
@@ -51,31 +51,33 @@ public class RectanglePanel extends JPanel {
             String[] lines = res.split("\n");
             int i = 30;
             for (String line : lines) {
-              drawText(g, line, scaledX1 - 500, scaledY1, scaledWidth, scaledHeight+i);
+              drawText(g, line, scaledX1, scaledY1, scaledWidth, scaledHeight+i);
               i+=30;
             }
-
         }
     }
 
     private void drawText(Graphics g, String text, int x, int y, int width, int height) {
-        // Set font and color for the text
-        Font font = new Font("Arial", Font.PLAIN, 12); 
-        g.setFont(font);
-        g.setColor(Color.BLACK); 
+      // Set font and color for the text
+      Font originalFont = g.getFont();
+      Font font = originalFont.deriveFont(Font.PLAIN);
+      g.setFont(font);
+      g.setColor(Color.BLACK);
 
-        int textX = x + width + 5; 
-        int textY = y + height / 2;
+      int textX = x + width + 5;
+      int textY = y + height / 2;
+      // Draw the text
+      g.drawString(text, textX-2000, textY);
 
-        // Draw the text
-        g.drawString(text, textX, textY);
-        
-    }
+      // Reset the font to the original after drawing the text
+      g.setFont(originalFont);
+  }
+
 
     
     private int scaleCoordinate(int coordinate, int panelSize) {
       // Adjust the scaling factor as needed
-      double scaleFactor = 30.0; // Example scaling factor
+      double scaleFactor = 95; // Example scaling factor
 
       return (int) (coordinate * scaleFactor);
   }
