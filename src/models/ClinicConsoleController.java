@@ -617,30 +617,31 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
 
   }
 
+
   private void showRoomMap(Clinic clinic) {
-    SwingUtilities.invokeLater(() -> {
-      JFrame frame = new JFrame(clinic.getName());
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        SwingUtilities.invokeLater(() -> {
+        JFrame frame = new JFrame("Scrollable Rectangle Panel Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-      // Create menu bar and add it to the frame
-      JMenuBar menuBar = createMenuBar(clinic);
-      frame.setJMenuBar(menuBar);
+        // Create menu bar and add it to the frame
+        JMenuBar menuBar = createMenuBar(clinic);
+        frame.setJMenuBar(menuBar);
 
-      RectanglePanel rectanglePanel = new RectanglePanel(clinic);
-      rectanglePanel.setPreferredSize(new Dimension(2000, 4000)); // Adjust the size as needed
+        RectanglePanel rectanglePanel = new RectanglePanel(clinic);
+        rectanglePanel.setPreferredSize(new Dimension(5000, 5000)); // Adjust the size as needed
 
-      JScrollPane scrollPane = new JScrollPane(rectanglePanel);
-      scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        JScrollPane scrollPane = new JScrollPane(rectanglePanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-      frame.add(scrollPane);
-      frame.setSize(1000, 1000);
-      frame.setLocationRelativeTo(null);
-      frame.setVisible(true);
+        frame.add(scrollPane);
+        frame.setSize(5000, 5000);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 
-      scrollPane.revalidate();
-      scrollPane.repaint();
+        scrollPane.revalidate();
+        scrollPane.repaint();
     });
-  }
+}
 
   /**
    * This method handles the unassignment of a staff member from a client in the clinic. It prompts
