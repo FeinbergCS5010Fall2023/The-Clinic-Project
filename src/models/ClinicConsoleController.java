@@ -819,6 +819,13 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
    */
 
   public void handleViewPatientRecordHistory(Clinic clinic) throws IOException {
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          new ViewPatientInformation(clinic);
+        }
+    });
+    /*
     Scanner scan = new Scanner(System.in);
 
     boolean checkAnotherPatient = true;
@@ -881,7 +888,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
         this.out.append("Error: " + e.getMessage() + ". Please try again.\n");
       }
     }
-
+*/
   }
 
   /**
