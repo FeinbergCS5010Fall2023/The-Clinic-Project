@@ -11,30 +11,31 @@ import java.io.PrintStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import models.Client;
 import models.Clinic;
 import models.MockClinicController;
-
 import models.Registration;
 import models.Room;
 import models.Staff;
 import models.VisitRecord;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+/**
+ * This is the class to test the mock.
+ */
 public class MockClinicControllerTest {
 
   private Clinic clinic;
   private MockClinicController controller;
-  private ByteArrayOutputStream outputStream;
 
+  /**
+   * This is the set up for each test.
+   */
   @BeforeEach
   public void setUp() {
     clinic = new Clinic("Test Clinic");
     controller = new MockClinicController(new StringReader(""), new StringWriter());
-    outputStream = new ByteArrayOutputStream();
 
   }
 
@@ -81,7 +82,8 @@ public class MockClinicControllerTest {
     clinic.addClinicStaff(raymond);
     controller.sendPatientHome(client, raymond, clinic);
     System.setOut(System.out);
-    String expectedOutput = "Mock: Sending patient home - *First Name: John, Last Name: Doe, Date Of Birth: 1990-01-01\n"
+    String expectedOutput = "Mock: Sending patient home - *First Name: "
+        + "John, Last Name: Doe, Date Of Birth: 1990-01-01\n"
         + " Room Number: 1, No Current Record\n";
     assertEquals(expectedOutput, outputStream.toString());
   }
@@ -97,7 +99,8 @@ public class MockClinicControllerTest {
     clinic.addClinicRoom(room);
     controller.assignPatientToNewRoom(room, client, clinic);
     System.setOut(System.out);
-    String expectedOutput = "Mock: Assigning patient to a new room - *First Name: John, Last Name: Doe, Date Of Birth: 1990-01-01\n"
+    String expectedOutput = "Mock: Assigning patient to a new room - *First Name: "
+        + "John, Last Name: Doe, Date Of Birth: 1990-01-01\n"
         + " Room Number: 1, No Current Record\n" + "1\n";
     assertEquals(expectedOutput, outputStream.toString());
   }
@@ -138,14 +141,13 @@ public class MockClinicControllerTest {
   public void testHandleAddStaff() throws IOException {
     String userInput = "MockFirstName\nMockLastName\nMockOccupation\n";
     InputStream inputStream = System.in;
-    PrintStream originalOut = System.out;
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setIn(new ByteArrayInputStream(userInput.getBytes()));
     System.setOut(new PrintStream(outputStream));
     MockClinicController mockController = new MockClinicController(inputStream, System.out);
-    mockController.handleAddStaff(new Clinic("Test")); // You might want to pass a real Clinic
-                                                       // instance
+    mockController.handleAddStaff(new Clinic("Test"));
     System.setIn(inputStream);
+    PrintStream originalOut = System.out;
     System.setOut(originalOut);
     String expectedOutput = "Mock: Simulating the addition of a new staff member through console\n"
         + "Mock: Please enter the First Name of the Staff member: MockFirstName\n"
@@ -166,7 +168,8 @@ public class MockClinicControllerTest {
         + "Mock: Please enter the First Name of the patient: MockPatientFirstName\n"
         + "Mock: Please enter the Last Name of the patient: MockPatientLastName\n"
         + "Mock: Please enter the Birth Day of the patient (YYYY-MM-DD): 2000-01-01\n"
-        + "Mock: Successfully added the following patient: *First Name: MockPatientFirstName, Last Name: MockPatientLastName, Date Of Birth: 2000-01-01\n"
+        + "Mock: Successfully added the following patient: *First Name: MockPatientFirstName, "
+        + "Last Name: MockPatientLastName, Date Of Birth: 2000-01-01\n"
         + " Room Number: 0, No Current Record\n" + "";
 
     assertEquals(expectedOutput, outContent.toString());
@@ -221,8 +224,10 @@ public class MockClinicControllerTest {
       e.printStackTrace();
     }
     System.setOut(System.out);
-    String expectedOutput = "Mock: Simulating the display of patients with no visits for more than 365 days\n"
-        + "Mock: There are no patients that haven't visited the clinic for more than 365 days from today.\n";
+    String expectedOutput = "Mock: Simulating the display of patients "
+        + "with no visits for more than 365 days\n"
+        + "Mock: There are no patients that haven't visited "
+        + "the clinic for more than 365 days from today.\n";
 
     assertEquals(expectedOutput, outputStream.toString());
   }
@@ -246,7 +251,6 @@ public class MockClinicControllerTest {
     assertEquals(expectedOutput, result);
   }
 
-  @SuppressWarnings("unused")
   @Test
   void testHandleAddNewRoom() throws IOException {
     MockClinicController mockController = new MockClinicController();
@@ -262,7 +266,8 @@ public class MockClinicControllerTest {
   void testHandleRemovePatient() throws IOException {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
-    String userInput = "MockPatientFirstName\nMockPatientLastName\n2000-01-01\nMockStaffFirstName\nMockLastName\nMockOccupation\n";
+    String userInput = "MockPatientFirstName\nMockPatientLastName\n2000-01-01\n"
+        + "MockStaffFirstName\nMockLastName\nMockOccupation\n";
     InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
     System.setIn(inputStream);
     Clinic clinic = new Clinic("Test Clinic");
@@ -271,7 +276,8 @@ public class MockClinicControllerTest {
     String expectedOutput = "Mock: Simulating the removal of a patient from the clinic\n"
         + "Mock: Please select the patient to discharge: MockPatientFirstName\n"
         + "Mock: Please select the staff who approved this: Dr. MockStaffFirstName\n"
-        + "Mock: Sending patient home - *First Name: MockPatientFirstName, Last Name: MockPatientLastName, Date Of Birth: 2000-01-01\n"
+        + "Mock: Sending patient home - *First Name: MockPatientFirstName, Last Name:"
+        + " MockPatientLastName, Date Of Birth: 2000-01-01\n"
         + " Room Number: 0, No Current Record\n"
         + "Mock: MockPatientFirstName has been discharged, approved by: Dr. MockStaffFirstName"
         + "\n";
@@ -283,7 +289,8 @@ public class MockClinicControllerTest {
   void testHandleAssignStaffToClient() {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
-    String userInput = "MockPatientFirstName\nMockPatientLastName\nDr. MockStaffFirstName\nMockLastName\nphysician\n";
+    String userInput = "MockPatientFirstName\nMockPatientLastName\nDr. MockStaffFirstName\n"
+        + "MockLastName\nphysician\n";
     InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
     System.setIn(inputStream);
     Client patient = new Client(1, "MockPatientFirstName", "MockPatientLastName", "2000-01-01");
@@ -292,16 +299,18 @@ public class MockClinicControllerTest {
     clinic.addClinicStaff(staff);
     try {
       controller.handleAssignStaffToClient(clinic);
-    } catch (Exception e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
-    String expectedOutput = "Mock: Simulating the assignment of staff to a patient through console\n"
-        + "Mock: Please select the patient to assign staff: MockPatientFirstName\n"
-        + "Mock: Please select the staff who will be assigned to the patient: Dr. MockStaffFirstName\n"
-        + "Mock: Assigning staff to patient - Dr. Dr. MockStaffFirstName MockLastName to *First Name: MockPatientFirstName, Last Name: MockPatientLastName, Date Of Birth: 2000-01-01\n"
-        + " Room Number: 1, No Current Record\n"
-        + "Mock: MockPatientFirstName MockPatientLastName has been assigned to Dr. Dr. MockStaffFirstName MockLastName\n"
-        + "";
+    String expectedOutput = "Mock: Simulating the assignment of staff to a patient through "
+        + "console\n" + "Mock: Please select the patient to assign staff: MockPatientFirstName\n"
+        + "Mock: Please select the staff who will be assigned to the patient: Dr. "
+        + "MockStaffFirstName\n"
+        + "Mock: Assigning staff to patient - Dr. Dr. MockStaffFirstName MockLastName to "
+        + "*First Name: MockPatientFirstName, Last Name: MockPatientLastName, Date Of Birth: "
+        + "2000-01-01\n" + " Room Number: 1, No Current Record\n"
+        + "Mock: MockPatientFirstName MockPatientLastName has been assigned to Dr. Dr. "
+        + "MockStaffFirstName MockLastName\n" + "";
     assertEquals(expectedOutput, outputStream.toString());
     assertTrue(clinic.getStaffKey().containsKey(staff));
     assertTrue(clinic.getStaffKey().get(staff).contains(patient));
@@ -339,8 +348,9 @@ public class MockClinicControllerTest {
     clinic.assignStaffToClient(staff1, client1);
     clinic.assignStaffToClient(staff2, client2);
     controller.handleViewStaff(clinic);
-    String expectedOutput = "--------------------------------------------------------------------------\n"
-        + "Staff: Smith Nurse\n" + "Clients assigned: \n" + "\n" + " Miller, Bob\n" + "\n"
+    String expectedOutput = "-----------------------------------"
+        + "---------------------------------------\n" + "Staff: Smith Nurse\n"
+        + "Clients assigned: \n" + "\n" + " Miller, Bob\n" + "\n"
         + "Total number of assigned patients ever: 1\n" + "\n" + "Staff: Doe Doctor\n"
         + "Clients assigned: \n" + "\n" + " Johnson, Alice\n" + "\n"
         + "Total number of assigned patients ever: 1\n" + "\n"
@@ -359,35 +369,30 @@ public class MockClinicControllerTest {
     controller.handleRemoveStaff(clinic, "Jane", "Doe");
     assertTrue(clinic.getClinicStaffs().isEmpty());
   }
-  
+
   @Test
   public void testHandleUnassignStaffFromClient() {
-      Clinic clinic = new Clinic("Test Clinic");
-      MockClinicController controller = new MockClinicController(new StringReader(""), new StringWriter());
-      Staff staff = new Staff("StaffFirstName", "StaffLastName", "StaffOccupation");
-      Client client = new Client(1, "PatientFirstName", "PatientLastName", "1990-01-01");
-      clinic.addClinicStaff(staff);
-      clinic.addClinicClient(client);
-      clinic.assignStaffToClient(staff, client);
-      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-      System.setOut(new PrintStream(outputStream));
-      try {
-          controller.handleUnassignStaffFromClient(clinic, "PatientFirstName", "PatientLastName", "StaffFirstName", "StaffLastName");
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
-      System.setOut(System.out);
-      String expectedOutput = "Mock: Simulating unassigning staff from a patient through GUI.\n"
-          + "Mock: Unassigning staff from patient...\n"
-          + "Able to remove him\n"
-          + "\n"
-          + "Mock: Successfully unassigned staff from the patient.\n"
-          + "";
-      assertEquals(expectedOutput, outputStream.toString());
+    Clinic clinic = new Clinic("Test Clinic");
+    MockClinicController controller = new MockClinicController(new StringReader(""),
+        new StringWriter());
+    Staff staff = new Staff("StaffFirstName", "StaffLastName", "StaffOccupation");
+    Client client = new Client(1, "PatientFirstName", "PatientLastName", "1990-01-01");
+    clinic.addClinicStaff(staff);
+    clinic.addClinicClient(client);
+    clinic.assignStaffToClient(staff, client);
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outputStream));
+    try {
+      controller.handleUnassignStaffFromClient(clinic, "PatientFirstName", "PatientLastName",
+          "StaffFirstName", "StaffLastName");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    System.setOut(System.out);
+    String expectedOutput = "Mock: Simulating unassigning staff from a patient through GUI.\n"
+        + "Mock: Unassigning staff from patient...\n" + "Able to remove him\n" + "\n"
+        + "Mock: Successfully unassigned staff from the patient.\n" + "";
+    assertEquals(expectedOutput, outputStream.toString());
   }
-  
-  
-  
-  
 
 }

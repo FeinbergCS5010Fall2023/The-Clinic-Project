@@ -4,20 +4,27 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Map.Entry;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Map.Entry;
+import java.util.Scanner;
 import javax.swing.JFrame;
 
+/**
+ * This is the mock class that has been used for testing.
+ */
 public class MockClinicController extends JFrame implements ClinicController {
   private static final long serialVersionUID = 1L;
   private final Appendable out;
   private final Scanner scan;
 
+  /**
+   * The constructor takes in two parameters.
+   * @param in that is type Readable.
+   * @param out that is type Appendable.
+   */
   public MockClinicController(Readable in, Appendable out) {
     if (in == null || out == null) {
       throw new IllegalArgumentException("Readable and Appendable can't be null");
@@ -26,10 +33,21 @@ public class MockClinicController extends JFrame implements ClinicController {
     this.scan = new Scanner(in);
   }
 
+  /**
+   * This method defines the input and output parameters for the mock.
+   * @param in is a type Readable.
+   * @param out is a type Appendable.
+   */
   public MockClinicController(InputStream in, Appendable out) {
     this(new InputStreamReader(in), out);
   }
 
+  /**
+   * Constructs a new instance of the MockClinicController with default input and output streams.
+   * This constructor initializes the MockClinicController using the standard 
+   * input and output streams
+   * (System.in and System.out).
+   */
   public MockClinicController() {
     this(System.in, System.out);
   }
@@ -145,18 +163,29 @@ public class MockClinicController extends JFrame implements ClinicController {
       out.append("Mock: Error: " + e.getMessage() + ", please try again.");
     }
   }
-  
+
+  /**
+   * Simulates the viewing of a patient's record history through the console.
+   *
+   * This method displays a list of patient names from the given clinic, allows 
+   * the user to select a patient, retrieves and displays the selected patient's 
+   * information, including first name, last name, date of birth, and visit records. 
+   * The user is prompted to enter the number corresponding to the patient they want to view.
+   *
+   * @param clinic The clinic instance containing patient information.
+   * @throws IOException If an I/O error occurs while reading user input.
+   */
   public void handleViewPatientRecordHistory(Clinic clinic) throws IOException {
     System.out.println("Mock: Simulating the view of patient record history through console");
 
     // Mock data for patient names
-    List<String> patientNames = getClinicClientNames(clinic);  // Pass clinic to the method
+    List<String> patientNames = getClinicClientNames(clinic); // Pass clinic to the method
 
     // Display patient names for selection
     System.out.println("Mock: Please select the patient:");
 
     for (int i = 0; i < patientNames.size(); i++) {
-        System.out.println((i + 1) + ". " + patientNames.get(i));
+      System.out.println((i + 1) + ". " + patientNames.get(i));
     }
 
     // Read user input for patient selection
@@ -164,24 +193,24 @@ public class MockClinicController extends JFrame implements ClinicController {
     int selectedPatientIndex;
 
     try {
-        selectedPatientIndex = Integer.parseInt(scan.next());
+      selectedPatientIndex = Integer.parseInt(scan.next());
     } catch (NumberFormatException e) {
-        System.out.println("Mock: Invalid input. Exiting...");
-        return;
+      System.out.println("Mock: Invalid input. Exiting...");
+      return;
     }
 
     // Validate user input
     if (selectedPatientIndex < 1 || selectedPatientIndex > patientNames.size()) {
-        System.out.println("Mock: Invalid selection. Exiting...");
-        return;
+      System.out.println("Mock: Invalid selection. Exiting...");
+      return;
     }
 
     // Find the selected patient
-    Client patient = findClientByName(clinic, patientNames.get(selectedPatientIndex - 1));  // Pass clinic to the method
+    Client patient = findClientByName(clinic, patientNames.get(selectedPatientIndex - 1)); 
 
     if (patient == null) {
-        System.out.println("Mock: Patient doesn't exist. Please try again.");
-        return;
+      System.out.println("Mock: Patient doesn't exist. Please try again.");
+      return;
     }
 
     // Display patient information
@@ -192,36 +221,58 @@ public class MockClinicController extends JFrame implements ClinicController {
     System.out.println(getVisitRecord(patient));
 
     System.out.println("Mock: End of Patient Information.");
-}
+  }
 
   private List<String> getClinicClientNames(Clinic clinic) {
     List<String> names = new ArrayList<>();
     for (Client client : clinic.getClinicClients()) {
-        names.add(client.getFirstName() + " " + client.getLastName());
+      names.add(client.getFirstName() + " " + client.getLastName());
     }
     return names;
-}
+  }
 
-private Client findClientByName(Clinic clinic, String fullName) {
+  private Client findClientByName(Clinic clinic, String fullName) {
     for (Client client : clinic.getClinicClients()) {
-        String name = client.getFirstName() + " " + client.getLastName();
-        if (name.equals(fullName)) {
-            return client;
-        }
+      String name = client.getFirstName() + " " + client.getLastName();
+      if (name.equals(fullName)) {
+        return client;
+      }
     }
     return null;
-}
+  }
+  
+  /**
+   * Finds a client in the given clinic based on the provided first name.
+   *
+   * This method iterates through the list of clients in the clinic, 
+   * concatenates the first name and last name of each client, and checks if 
+   * it contains the specified first name. If a match is found, the corresponding
+   * client is returned; otherwise, null is returned.
+   *
+   * @param firstName The first name to search for.
+   * @param clinic The clinic instance containing the list of clients.
+   * @return The Client instance with a matching first name, or null if no match is found.
+   */
+  private Client findClientByName(String firstName, Clinic clinic) {
+    for (Client client : clinic.getClinicClients()) {
+      String name = client.getFirstName() + " " + client.getLastName();
+      if (name.contains(firstName)) {
+        return client;
+      }
+    }
+    return null;
+  }
 
   private String getVisitRecord(Client patient) {
-      StringBuilder res = new StringBuilder();
-      for (int i = 0; i < patient.getRecordHistory().size(); i++) {
-          res.append(patient.getRecordHistory().get(i).toString());
-      }
-      if (patient.getRecord() == null) {
-          res.append(patient.getFirstName()).append(' ').append(patient.getLastName())
-                  .append(" does not have a medical record with us.");
-      }
-      return res.toString();
+    StringBuilder res = new StringBuilder();
+    for (int i = 0; i < patient.getRecordHistory().size(); i++) {
+      res.append(patient.getRecordHistory().get(i).toString());
+    }
+    if (patient.getRecord() == null) {
+      res.append(patient.getFirstName()).append(' ').append(patient.getLastName())
+          .append(" does not have a medical record with us.");
+    }
+    return res.toString();
   }
 
   @Override
@@ -323,20 +374,32 @@ private Client findClientByName(Clinic clinic, String fullName) {
     }
   }
 
-  private Client findClientByName(String firstName, Clinic clinic) {
-    for (Client client : clinic.getClinicClients()) {
-      String name = client.getFirstName() + " " + client.getLastName();
-      if (name.contains(firstName)) {
-        return client;
-      }
-    }
-    return null;
-  }
 
   private Staff findStaffByName(String firstName, Clinic clinic) {
     for (Staff staff : clinic.getClinicStaffs()) {
       String name = staff.getFirstName() + " " + staff.getLastName();
       if (name.contains(firstName)) {
+        return staff;
+      }
+    }
+    return null;
+  }
+  
+  /**
+   * Finds a staff member in the clinic based on the provided first and last name.
+   *
+   * Iterates through the list of clinic staff, checks if both first and last names match 
+   * the provided names. If a match is found, returns the corresponding staff member; 
+   * otherwise, returns null.
+   *
+   * @param firstName First name of the staff to search for.
+   * @param lastName Last name of the staff to search for.
+   * @param clinic Clinic instance containing the list of staff.
+   * @return The Staff instance with matching first and last names, or null if no match is found.
+   */
+  private Staff findStaffByName(String firstName, String lastName, Clinic clinic) {
+    for (Staff staff : clinic.getClinicStaffs()) {
+      if (staff.getFirstName().contains(firstName) && staff.getLastName().contains(lastName)) {
         return staff;
       }
     }
@@ -351,13 +414,29 @@ private Client findClientByName(Clinic clinic, String fullName) {
 
   @Override
   public void handleDisplayAllInfo(Clinic clinic) throws IOException {
-      try {
-          this.out.append(displayAllInfo(clinic));
-      } catch (IOException e) {
-          this.out.append("whatever");
-      }
+    try {
+      this.out.append(displayAllInfo(clinic));
+    } catch (IOException e) {
+      this.out.append("whatever");
+    }
   }
 
+
+  
+  /**
+   * Simulates the process of unassigning staff from a patient through a graphical 
+   * user interface (GUI). This method takes the clinic instance, patient's first 
+   * name, patient's last name, staff's first name, and staff's last name as parameters. 
+   * It then finds the corresponding patient and staff using the provided
+   * names, unassigns the staff from the patient, and prints a success message.
+   *
+   * @param clinic The clinic instance containing patient and staff information.
+   * @param patientFirstName The first name of the patient.
+   * @param patientLastName The last name of the patient.
+   * @param staffFirstName The first name of the staff to be unassigned.
+   * @param staffLastName The last name of the staff to be unassigned.
+   * @throws IOException If an I/O error occurs during the unassignment process.
+   */
   public void handleUnassignStaffFromClient(Clinic clinic, String patientFirstName,
       String patientLastName, String staffFirstName, String staffLastName) throws IOException {
     System.out.println("Mock: Simulating unassigning staff from a patient through GUI.");
@@ -367,12 +446,18 @@ private Client findClientByName(Clinic clinic, String fullName) {
         findStaffByName(staffFirstName, clinic), clinic);
     System.out.println("Mock: Successfully unassigned staff from the patient.");
   }
-
+  
+  @Override
+  public void handleUnassignStaffFromClient(Clinic clinic) throws IOException {
+    return;
+  }
+  
   private void unassignStaffFromPatient(Client patient, Staff staff, Clinic clinic) {
     clinic.removeStaffFromClient(staff, patient);
     System.out.println("Able to remove him\n");
 
   }
+  
 
   @Override
   public void displayGame(Clinic clinic) {
@@ -389,7 +474,8 @@ private Client findClientByName(Clinic clinic, String fullName) {
     try {
       if (list.length() == 0) {
         System.out.println(
-            "Mock: There are no patients that haven't visited the clinic for more than 365 days from today.");
+            "Mock: There are no patients that haven't visited the clinic for"
+            + " more than 365 days from today.");
       } else {
         System.out.println("Mock: " + list);
       }
@@ -417,6 +503,17 @@ private Client findClientByName(Clinic clinic, String fullName) {
         "Mock: --------------------------------------------------------------------------");
   }
 
+  /**
+   * Handles the removal of a staff member from the clinic.
+   *
+   * Takes clinic, discharge staff's first and last name as parameters.
+   * Finds the discharge staff, removes them from the clinic, and prints a success message.
+   *
+   * @param clinic Clinic instance containing staff information.
+   * @param disChargeStaffFirstName First name of the staff to be removed.
+   * @param disChargeStaffLastName Last name of the staff to be removed.
+   * @throws IOException If an I/O error occurs during the removal process.
+   */
   public void handleRemoveStaff(Clinic clinic, String disChargeStaffFirstName,
       String disChargeStaffLastName) throws IOException {
     try {
@@ -437,27 +534,14 @@ private Client findClientByName(Clinic clinic, String fullName) {
       System.out.println("Error: " + e.getMessage() + ". Please try again.\n");
     }
   }
+  
+  @Override
+  public void handleRemoveStaff(Clinic clinic) throws IOException {
 
-  private Staff findStaffByName(String firstName, String lastName, Clinic clinic) {
-    for (Staff staff : clinic.getClinicStaffs()) {
-      if (staff.getFirstName().contains(firstName) && staff.getLastName().contains(lastName)) {
-        return staff;
-      }
-    }
-    return null;
+    return;
   }
 
-  private String getValidNameInput() throws IOException {
-    String input;
-    while (true) {
-      input = scan.next();
-      if (input.matches("[a-zA-Z]+")) {
-        return input;
-      } else {
-        this.out.append("Invalid input. Please enter a valid name.");
-      }
-    }
-  }
+
 
   @Override
   public String displayRoomInfo(Room room, Clinic clinic) {
@@ -638,24 +722,20 @@ private Client findClientByName(Clinic clinic, String fullName) {
 
     return;
   }
+  
 
-  @Override
-  public void handleRemoveStaff(Clinic clinic) throws IOException {
-
-    return;
-  }
-
-  @Override
-  public void handleUnassignStaffFromClient(Clinic clinic) throws IOException {
-    return;
+  private String getValidNameInput() throws IOException {
+    String input;
+    while (true) {
+      input = scan.next();
+      if (input.matches("[a-zA-Z]+")) {
+        return input;
+      } else {
+        this.out.append("Invalid input. Please enter a valid name.");
+      }
+    }
   }
 
 
 }
 
-//
-//@Override
-//public Client registerClientWithVisitRecord(String firstName, String lastName, String birthDay,
-//  VisitRecord record, Clinic clinic) throws IOException {
-//return new Client(firstName, lastName, birthDay);
-//}
