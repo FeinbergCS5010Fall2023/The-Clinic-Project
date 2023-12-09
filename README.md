@@ -63,15 +63,16 @@ the clinical staff members assigned to them will be reassigned to that room.
 
 
 ### Example Runs
-
-List any example runs that you have in res/ directory and provide a description of what each example represents or does. Make sure that your example runs are provided as *plain text files*.
-
+Within the res/ folder is the example run that contains a .png of running through all of the methods that were implemented in this milestone. It demonstrates the following:
+1. Register a patient into the clinic.
+2. Assign a clinical staff member to a patient.
+3. Display the information/visit record of an existing patient.
+4. Unassign a clinical staff member to a patient.
+5. Discharge a patient from the clinic.
 
 
 ### Design/Model Changes
-
-Document what changes you have made from earlier designs. Why did you make those changes? Keep an on-going list using some form of versioning so it is clear when these changes occurred.
-
+The most significant design/model change involved displaying the clinic's room placement. We decided to replace Phil's design with Michael's design. The reason for this was because my design was not appearing in the format that we wanted it to, but Michael's design was so we added his design to the implementation.
 
 
 ### Assumptions
@@ -88,7 +89,6 @@ What limitations exist in your program. This should include any requirements tha
 
 ### Citations
 
-Be sure to cite your sources. A good guideline is if you take more than three lines of code from some source, you must include the information on where it came from. Citations should use proper [IEEE citation guidelines](https://ieee-dataport.org/sites/default/files/analysis/27/IEEE Citation Guidelines.pdf) and should include references (websites, papers, books, or other) for ***any site that you used to research a solution***. For websites, this includes name of website, title of the article, the url, and the date of retrieval**.** Citations should also include a qualitative description of what you used, and what you changed/contributed.
 
 
 
