@@ -76,15 +76,26 @@ The most significant design/model change involved displaying the clinic's room p
 
 
 ### Assumptions
-
-List any assumptions that you made during program development and implementations. Be sure that these do not conflict with the requirements of the project.
-
+There were a few assumptions that were made when developing 
+this program:
+1. Occupations of the staff members could only be either a
+   "receptionist", "physician", or "nurse".
+   * The way my method is structured, it doesn't allow any
+     other occupations to be registered as a clinical staff
+2. Add Room is used for testing purposes only.
+   * This was a method that was implemented to public access
+     under the assumption that nobody needs to add a room.
+     It's only use was for testing and nothing more. Users
+     should not have the power to add rooms to the clinic.
+3. The file being read is of the right format.
+   * There are no verifications to identify if the format
+     of the .txt file is of the correct format.
 
 
 ### Limitations
-
-What limitations exist in your program. This should include any requirements that were *not* implemented or were not working correctly (including something that might work some of the time).
-
+The functionality for this program works and functions 
+exactly as intended, according to the list of requirements
+from the assignment description.
 
 
 ### Citations
