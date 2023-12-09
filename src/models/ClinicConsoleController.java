@@ -521,7 +521,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
 
     JMenu SaveLivesMenu = new JMenu("Save Lives");
     JMenuItem SaveLivesItem1 = new JMenuItem("Register Patient");
-    JMenuItem SaveLivesItem2 = new JMenuItem("Move Patient");
+    //JMenuItem SaveLivesItem2 = new JMenuItem("Move Patient");
     JMenuItem SaveLivesItem3 = new JMenuItem("Assign Staff To Patient");
     JMenuItem SaveLivesItem4 = new JMenuItem("Display Patient Info");
     JMenuItem SaveLivesItem5 = new JMenuItem("Unassign Staff To Patient");
@@ -538,7 +538,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       }
     });
 
-    SaveLivesItem2.addActionListener(new ActionListener() {
+    /*SaveLivesItem2.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
@@ -548,7 +548,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
         }
       }
     });
-
+    */
     SaveLivesItem3.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -596,7 +596,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
     aboutMenu.add(aboutItem);
     roomMapMenu.add(roomMapItem);
     SaveLivesMenu.add(SaveLivesItem1);
-    SaveLivesMenu.add(SaveLivesItem2);
+    //SaveLivesMenu.add(SaveLivesItem2);
     SaveLivesMenu.add(SaveLivesItem3);
     SaveLivesMenu.add(SaveLivesItem4);
     SaveLivesMenu.add(SaveLivesItem5);
@@ -628,7 +628,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
         frame.setJMenuBar(menuBar);
 
         RectanglePanel rectanglePanel = new RectanglePanel(clinic);
-        rectanglePanel.setPreferredSize(new Dimension(5000, 5000)); // Adjust the size as needed
+        rectanglePanel.setPreferredSize(new Dimension(1500, 3000)); // Adjust the size as needed
 
         JScrollPane scrollPane = new JScrollPane(rectanglePanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
