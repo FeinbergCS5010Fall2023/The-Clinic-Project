@@ -2,36 +2,64 @@
 
 This repo represents the coursework for CS 5010!
 
-**Name:** put your full name here
+**Name:** Philopater Askander and Michael Eshak
 
-**Email:** put your Northeastern email address here
+**Email:** askander.p@northeastern.edu eshak.m@northeastern.edu
 
-**Preferred Name:** put your preferred name here (how shall we address you)
+**Preferred Name:** Phil and Mikey
 
 
 
 ### About/Overview
-
-Give a general overview of the problem and how your program solve the problem
+The purpose of Milestone 4 was to create a graphical user interface with
+the functionality that was developed from the previous three milestone
+assignments. This was accomplished using java's JFrame library as well as
+including features and functionality from java swing.
 
 
 
 ### List of Features
-
-List all features that are present in your program.
-
-
+The features that are included with Milestone 4 include:
+1. A welcome screen that contains instructions for starting the game and
+   the developers of the game.
+2. Load the text file directly from the GUI.
+3. A visual of all the patients and staff members in their respected rooms.
+4. The option to Register a patient.
+5. The option to assign a clinical staff member to a patient.
+6. The option to display a specific clinical patient's information/visit record.
+7. The option to unassign a clinical staff member from a patient.
+8. The option to discharge the patient.
+9. The option to quit the game.
+10. The option to assign a patient to a new room.
+11. An about menu that contains the following:
+    * Name of the clinic
+    * Number of patients in the clinic
+    * Number of active clinical staff members
+    * Number of rooms
 
 ### How to Run
 
-Describe how to run your program from the JAR file. Describe what arguments are needed (if any) and what they mean.
 
 
 
 ### How to Use the Program
+When you run the JAR file, you will be greeted with the welcome page. From there,
+you're going to click "file" from the menu on the top right and load in your clinic file.
+Then you're be rediected to a visual representation of the clinic that conatins the patients
+and clinical staff members in their respected rooms. At the menu, you have the option to preview
+information about the room, refresh the room map, and the option to save lives. If you want to 
+play the game, all the functionaliy is in the "save lives" tab of the menu. There are five 
+actions you can do as the user:
 
-Provide instructions on how to use the functionality in your program. If it is interactive, describe how to interact with your program. Pay particular attention to the parts that are not part of the example runs that you provide.
+1. Register a patient into the clinic.
+2. Assign a clinical staff member to a patient.
+3. Display the information/visit record of an existing patient.
+4. Unassign a clinical staff member to a patient.
+5. Discharge a patient from the clinic.
 
+Furthermore, if you would like to move a patient to a new room, you can left click the 
+room and click "add patient to room". If that room is available, that patient, along with
+the clinical staff members assigned to them will be reassigned to that room.
 
 
 ### Example Runs
