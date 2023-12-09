@@ -1,34 +1,22 @@
 
 package models;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
@@ -308,110 +296,17 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
     displayGame(clinic);
   }
 
+  /**
+   * This method is the functionality of the game that reads the file for the data.
+   * @param clinic is the clinic that it's going to be used.
+   * @param input is file that it's going to read.
+   */
+
   public void playGame(Clinic clinic, File input) {
     if (clinic == null) {
       throw new IllegalArgumentException("Clinic object cannot be null");
     }
     clinic.readDataFromFile(input);
-//    while (!quitGame) {
-//      displayGame(clinic);
-//
-//      try {
-//        this.out.append(displayAllInfo(clinic));
-//        this.out.append("Please choose what you want to do:\n");
-//        this.out.append("1: Add Patient\n");
-//        this.out.append("2: Add Staff\n");
-//        this.out.append("3: Discharge Patient\n");
-//        this.out.append("4: Assign Staff To Client\n");
-//        this.out.append("5: Assign Patient To A New Room\n");
-//        this.out.append("6: Add A New Room\n");
-//        this.out.append("7: Show me All Data\n");
-//        this.out.append("8: Show me Data About A Specific Room\n");
-//        this.out.append("9: Show me the Medical History of a patient\n");
-//        this.out.append("10: Show List of Staff members with their patients\n");
-//        this.out.append("11: Remove Clinical Staff Member\n");
-//        this.out.append("12: Unassign Clinical Staff Member From Patient\n");
-//        this.out.append("13: Show the List Of Patients Who Have Not Visited For Over A Year\n");
-//        this.out.append("14: Show the List of Patients Who Have Visit The Clinic At Least Twice"
-//            + " in the last 365 days\n");
-//        this.out.append("15: Show the List of All Staff Members\n");
-//        this.out.append("16: Quit\n");
-//        int userInput;
-//        // userInput = scan.nextInt();
-//        userInput = scan.nextInt();
-//        if (userInput > 16 || userInput < 1) {
-//          throw new IllegalArgumentException("That was not a valid option");
-//        }
-//        // Handle user input based on the selected option
-//        switch (userInput) {
-//          case 1:
-//            handleAddPatient(clinic);
-//            break;
-//          case 2:
-//            handleAddStaff(clinic);
-//            break;
-//          case 3:
-//            handleRemovePatient(clinic);
-//            break;
-//          case 4:
-//            handleAssignStaffToClient(clinic);
-//            break;
-//          case 5:
-//            handleAssignPatientToRoom(clinic);
-//            break;
-//          case 6:
-//            handleAddNewRoom(clinic);
-//            break;
-//          case 7:
-//            handleDisplayAllInfo(clinic);
-//            break;
-//
-//          case 8:
-//            handleDisplayRoomInfo(clinic);
-//            break;
-//
-//          case 9:
-//            handleViewPatientRecordHistory(clinic);
-//            break;
-//
-//          case 10:
-//            handleViewStaff(clinic);
-//            break;
-//
-//          case 11:
-//            handleRemoveStaff(clinic);
-//            break;
-//
-//          case 12:
-//            handleUnassignStaffFromClient(clinic);
-//            break;
-//
-//          case 13:
-//            handleYearNoVisit(clinic);
-//            break;
-//
-//          case 14:
-//            handleTwoVisitYear(clinic);
-//            break;
-//
-//          case 15:
-//            handleViewAllStaffMembers(clinic);
-//            break;
-//
-//          case 16:
-//            quitGame = true;
-//            this.out.append("Game over, thanks for playing");
-//            break;
-//
-//          default:
-//            continue;
-//        }
-//
-//      } catch (NoSuchElementException | IOException | IllegalArgumentException ioe) {
-//        throw new IllegalStateException("Error: " + ioe.getMessage(), ioe);
-//      }
-//    }
-
   }
 
   /**
@@ -479,29 +374,13 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
    */
   @Override
   public void displayGame(Clinic clinic) {
-
-//    frame = new JFrame("Clinic Layout");
-//    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//    JMenuBar menuBar = createMenuBar(clinic);
-//    frame.setJMenuBar(menuBar);
-//
-//    JPanel contentPane = new JPanel();
-//    contentPane.setLayout(new BorderLayout());
-//
-//    frame.setContentPane(contentPane);
-//
-//    frame.setSize(1000, 1000);
-//    frame.setLocationRelativeTo(null);
-//    frame.setVisible(true);
     showRoomMap(clinic);
 
   }
 
   private JMenuBar createMenuBar(Clinic clinic) {
-    JMenuBar menuBar = new JMenuBar();
+    
 
-    JMenu aboutMenu = new JMenu("About");
     JMenuItem aboutItem = new JMenuItem("About Clinic");
     aboutItem.addActionListener(new ActionListener() {
       @Override
@@ -510,7 +389,6 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       }
     });
 
-    JMenu roomMapMenu = new JMenu("Room Map");
     JMenuItem roomMapItem = new JMenuItem("Show Room Map");
     roomMapItem.addActionListener(new ActionListener() {
       @Override
@@ -519,15 +397,12 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       }
     });
 
-    JMenu SaveLivesMenu = new JMenu("Save Lives");
-    JMenuItem SaveLivesItem1 = new JMenuItem("Register Patient");
-    //JMenuItem SaveLivesItem2 = new JMenuItem("Move Patient");
-    JMenuItem SaveLivesItem3 = new JMenuItem("Assign Staff To Patient");
-    JMenuItem SaveLivesItem4 = new JMenuItem("Display Patient Info");
-    JMenuItem SaveLivesItem5 = new JMenuItem("Unassign Staff To Patient");
-    JMenuItem SaveLivesItem6 = new JMenuItem("Discharge Patient");
+    JMenuItem saveLivesItem1 = new JMenuItem("Register Patient");
+    // JMenuItem SaveLivesItem2 = new JMenuItem("Move Patient");
+    JMenuItem saveLivesItem3 = new JMenuItem("Assign Staff To Patient");
+    JMenuItem saveLivesItem4 = new JMenuItem("Display Patient Info");
 
-    SaveLivesItem1.addActionListener(new ActionListener() {
+    saveLivesItem1.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
@@ -538,18 +413,14 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       }
     });
 
-    /*SaveLivesItem2.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        try {
-          handleAssignPatientToRoom(clinic);
-        } catch (IOException ioe) {
-          throw new IllegalStateException("Error: " + ioe.getMessage(), ioe);
-        }
-      }
-    });
-    */
-    SaveLivesItem3.addActionListener(new ActionListener() {
+    /*
+     * SaveLivesItem2.addActionListener(new ActionListener() {
+     * 
+     * @Override public void actionPerformed(ActionEvent e) { try {
+     * handleAssignPatientToRoom(clinic); } catch (IOException ioe) { throw new
+     * IllegalStateException("Error: " + ioe.getMessage(), ioe); } } });
+     */
+    saveLivesItem3.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
@@ -560,7 +431,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       }
     });
 
-    SaveLivesItem4.addActionListener(new ActionListener() {
+    saveLivesItem4.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
@@ -571,7 +442,8 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       }
     });
 
-    SaveLivesItem5.addActionListener(new ActionListener() {
+    JMenuItem saveLivesItem5 = new JMenuItem("Unassign Staff To Patient");
+    saveLivesItem5.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
@@ -581,8 +453,9 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
         }
       }
     });
-
-    SaveLivesItem6.addActionListener(new ActionListener() {
+    
+    JMenuItem saveLivesItem6 = new JMenuItem("Discharge Patient");
+    saveLivesItem6.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
@@ -593,17 +466,20 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       }
     });
     
+    JMenu roomMapMenu = new JMenu("Room Map");
+    JMenu aboutMenu = new JMenu("About");
     aboutMenu.add(aboutItem);
     roomMapMenu.add(roomMapItem);
-    SaveLivesMenu.add(SaveLivesItem1);
-    //SaveLivesMenu.add(SaveLivesItem2);
-    SaveLivesMenu.add(SaveLivesItem3);
-    SaveLivesMenu.add(SaveLivesItem4);
-    SaveLivesMenu.add(SaveLivesItem5);
-    SaveLivesMenu.add(SaveLivesItem6);
+    JMenu saveLivesMenu = new JMenu("Save Lives");
+    saveLivesMenu.add(saveLivesItem1);
+    saveLivesMenu.add(saveLivesItem3);
+    saveLivesMenu.add(saveLivesItem4);
+    saveLivesMenu.add(saveLivesItem5);
+    saveLivesMenu.add(saveLivesItem6);
+    JMenuBar menuBar = new JMenuBar();
     menuBar.add(aboutMenu);
     menuBar.add(roomMapMenu);
-    menuBar.add(SaveLivesMenu);
+    menuBar.add(saveLivesMenu);
     return menuBar;
   }
 
@@ -617,31 +493,30 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
 
   }
 
-
   private void showRoomMap(Clinic clinic) {
-        SwingUtilities.invokeLater(() -> {
-        JFrame frame = new JFrame("Scrollable Rectangle Panel Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    SwingUtilities.invokeLater(() -> {
+      JFrame frame = new JFrame("Scrollable Rectangle Panel Example");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Create menu bar and add it to the frame
-        JMenuBar menuBar = createMenuBar(clinic);
-        frame.setJMenuBar(menuBar);
+      // Create menu bar and add it to the frame
+      JMenuBar menuBar = createMenuBar(clinic);
+      frame.setJMenuBar(menuBar);
 
-        RectanglePanel rectanglePanel = new RectanglePanel(clinic);
-        rectanglePanel.setPreferredSize(new Dimension(1500, 3000)); // Adjust the size as needed
+      RectanglePanel rectanglePanel = new RectanglePanel(clinic);
+      rectanglePanel.setPreferredSize(new Dimension(1500, 3000)); // Adjust the size as needed
 
-        JScrollPane scrollPane = new JScrollPane(rectanglePanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+      JScrollPane scrollPane = new JScrollPane(rectanglePanel);
+      scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        frame.add(scrollPane);
-        frame.setSize(5000, 5000);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+      frame.add(scrollPane);
+      frame.setSize(5000, 5000);
+      frame.setLocationRelativeTo(null);
+      frame.setVisible(true);
 
-        scrollPane.revalidate();
-        scrollPane.repaint();
+      scrollPane.revalidate();
+      scrollPane.repaint();
     });
-}
+  }
 
   /**
    * This method handles the unassignment of a staff member from a client in the clinic. It prompts
@@ -660,8 +535,8 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       public void run() {
         new UnassignStaffToPatient(clinic);
       }
-  });
-    
+    });
+
   }
 
   /**
@@ -820,76 +695,47 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
    */
 
   public void handleViewPatientRecordHistory(Clinic clinic) throws IOException {
-      SwingUtilities.invokeLater(new Runnable() {
-        @Override
-        public void run() {
-          new ViewPatientInformation(clinic);
-        }
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        new ViewPatientInformation(clinic);
+      }
     });
     /*
-    Scanner scan = new Scanner(System.in);
-
-    boolean checkAnotherPatient = true;
-
-    while (checkAnotherPatient) {
-      try {
-        boolean firstCheck = false;
-        Client patient = null;
-        String firstName = "";
-        String lastName = "";
-
-        while (!firstCheck) {
-          this.out.append("Please enter the First Name of the patient:\n");
-          firstName = getValidNameInput();
-
-          this.out.append("Please enter the Last Name of the patient:\n");
-          lastName = getValidNameInput();
-
-          for (Client client : clinic.getClinicClients()) {
-            if (client.getFirstName().contains(firstName)
-                && client.getLastName().contains(lastName)) {
-              patient = client;
-              firstCheck = true;
-              break;
-            }
-          }
-
-          if (!firstCheck) {
-            this.out.append("Patient doesn't exist. Do you want to try again? (yes/no)");
-            String tryAgain = getValidNameInput();
-            if (!"yes".equalsIgnoreCase(tryAgain)) {
-              return; // Return without removing a patient
-            }
-          }
-        }
-
-        for (int i = 0; i < patient.getRecordHistory().size(); i++) {
-          this.out.append(patient.getRecordHistory().get(i).toString());
-        }
-        if (patient.getRecord() == null) {
-          this.out.append(patient.getFirstName() + ' ' + patient.getLastName()
-              + " does not have a medical record with us.\n");
-        }
-        boolean isOut = false;
-        while (!isOut) {
-          this.out.append("Do you want to check another patient's clinical record? (yes/no)");
-          String checkAnother = getValidNameInput();
-          if ("yes".equalsIgnoreCase(checkAnother)) {
-            handleViewPatientRecordHistory(clinic);
-          } else if ("no".equalsIgnoreCase(checkAnother)) {
-            return;
-          } else {
-            this.out.append("That was not a valid response!\n");
-          }
-        }
-        scan.close();
-      } catch (NullPointerException e) {
-        this.out.append("Error: " + e.getMessage() + ". Please try again.\n");
-      } catch (IllegalArgumentException e) {
-        this.out.append("Error: " + e.getMessage() + ". Please try again.\n");
-      }
-    }
-*/
+     * Scanner scan = new Scanner(System.in);
+     * 
+     * boolean checkAnotherPatient = true;
+     * 
+     * while (checkAnotherPatient) { try { boolean firstCheck = false; Client patient = null; String
+     * firstName = ""; String lastName = "";
+     * 
+     * while (!firstCheck) { this.out.append("Please enter the First Name of the patient:\n");
+     * firstName = getValidNameInput();
+     * 
+     * this.out.append("Please enter the Last Name of the patient:\n"); lastName =
+     * getValidNameInput();
+     * 
+     * for (Client client : clinic.getClinicClients()) { if
+     * (client.getFirstName().contains(firstName) && client.getLastName().contains(lastName)) {
+     * patient = client; firstCheck = true; break; } }
+     * 
+     * if (!firstCheck) {
+     * this.out.append("Patient doesn't exist. Do you want to try again? (yes/no)"); String tryAgain
+     * = getValidNameInput(); if (!"yes".equalsIgnoreCase(tryAgain)) { return; // Return without
+     * removing a patient } } }
+     * 
+     * for (int i = 0; i < patient.getRecordHistory().size(); i++) {
+     * this.out.append(patient.getRecordHistory().get(i).toString()); } if (patient.getRecord() ==
+     * null) { this.out.append(patient.getFirstName() + ' ' + patient.getLastName() +
+     * " does not have a medical record with us.\n"); } boolean isOut = false; while (!isOut) {
+     * this.out.append("Do you want to check another patient's clinical record? (yes/no)"); String
+     * checkAnother = getValidNameInput(); if ("yes".equalsIgnoreCase(checkAnother)) {
+     * handleViewPatientRecordHistory(clinic); } else if ("no".equalsIgnoreCase(checkAnother)) {
+     * return; } else { this.out.append("That was not a valid response!\n"); } } scan.close(); }
+     * catch (NullPointerException e) { this.out.append("Error: " + e.getMessage() +
+     * ". Please try again.\n"); } catch (IllegalArgumentException e) { this.out.append("Error: " +
+     * e.getMessage() + ". Please try again.\n"); } }
+     */
   }
 
   /**
@@ -904,7 +750,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       public void run() {
         new RegisterPatient(clinic);
       }
-  });
+    });
   }
 
   /**
@@ -964,9 +810,9 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
-          new OptionWindow(clinic);
+        new OptionWindow(clinic);
       }
-  });
+    });
 
   }
 
@@ -977,12 +823,12 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
    */
 
   public void handleAssignStaffToClient(Clinic clinic) throws IOException {
-    
-      SwingUtilities.invokeLater(new Runnable() {
-        @Override
-        public void run() {
-          new AssignStaffToPatient(clinic);
-        }
+
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        new AssignStaffToPatient(clinic);
+      }
     });
   }
 
@@ -1168,27 +1014,4 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
     }
   }
 
-  private BigDecimal getValidBodyTemperature() throws IOException {
-    BigDecimal temp = null;
-    try {
-      temp = scan.nextBigDecimal();
-    } catch (InputMismatchException e) {
-      this.out.append("Error: Invalid input for body temperature. Please enter a valid number.\n");
-      scan.nextLine(); // Consume the invalid input
-      temp = getValidBodyTemperature(); // Recursive call to prompt user again
-    }
-    return temp;
-  }
-
-  private String getValidDateInput() throws IOException {
-    String input;
-    while (true) {
-      input = scan.next();
-      if (input.matches("\\d{2}/\\d{2}/\\d{4}")) {
-        return input;
-      } else {
-        this.out.append("Invalid input. Please enter a valid date in MM/dd/yyyy format.");
-      }
-    }
-  }
 }

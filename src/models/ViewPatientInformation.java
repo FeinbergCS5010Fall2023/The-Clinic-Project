@@ -6,16 +6,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class ViewPatientInformation extends JFrame{
+/**
+ * This class defines the method for viewing patient information.
+ */
+public class ViewPatientInformation extends JFrame {
   private static final long serialVersionUID = 1L;
 
   private final Clinic clinic;
+
+  /**
+   * The constructor takes one parameter, clinic.
+   * @param clinic is where the patient is located.
+   */
   public ViewPatientInformation(Clinic clinic) {
     this.clinic = clinic;
 
@@ -32,11 +39,10 @@ public class ViewPatientInformation extends JFrame{
     // Create a button to discharge a patient
     JButton viewAllButton = new JButton("View Patient Info");
     viewAllButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            findPatient();
-        }
-
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        findPatient();
+      }
 
     });
     // Add buttons to the panel
@@ -48,52 +54,41 @@ public class ViewPatientInformation extends JFrame{
     // Set the size of the window
     setSize(300, 150);
 
- // Center the window on the screen
+    // Center the window on the screen
     setLocationRelativeTo(null);
 
     // Set the window to be visible
     setVisible(true);
   }
+
   private void findPatient() {
- // Create a dialog for user input
-    String patientName = (String) JOptionPane.showInputDialog(
-        ViewPatientInformation.this,
-            "Please select the patient:",
-            "Patient",
-            JOptionPane.PLAIN_MESSAGE,
-            null,
-            getClinicClientNames().toArray(),
-            null);
+    // Create a dialog for user input
+    String patientName = (String) JOptionPane.showInputDialog(ViewPatientInformation.this,
+        "Please select the patient:", "Patient", JOptionPane.PLAIN_MESSAGE, null,
+        getClinicClientNames().toArray(), null);
 
     if (patientName == null) {
-        return; // User canceled the operation
+      return; // User canceled the operation
     }
     // Find the selected patient
     Client patient = findClientByName(patientName);
 
     if (patient == null) {
-        JOptionPane.showMessageDialog(
-            ViewPatientInformation.this,
-                "Patient doesn't exist. Please try again.",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        return;
+      JOptionPane.showMessageDialog(ViewPatientInformation.this,
+          "Patient doesn't exist. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+      return;
     }
-    
-    JOptionPane.showMessageDialog(
-        ViewPatientInformation.this,
-            "First Name: " + patient.getFirstName() + "\n" +
-            "Last Name: " + patient.getLastName()+ "\n" +
-            "Date of Birth: " + patient.getBirthDateTime() + "\n"
-            + getVisitRecord(patient),
-        "Discharge Successful",
-        JOptionPane.INFORMATION_MESSAGE);
 
-dispose();
-   
-    
+    JOptionPane.showMessageDialog(ViewPatientInformation.this,
+        "First Name: " + patient.getFirstName() + "\n" + "Last Name: " + patient.getLastName()
+            + "\n" + "Date of Birth: " + patient.getBirthDateTime() + "\n"
+            + getVisitRecord(patient),
+        "Discharge Successful", JOptionPane.INFORMATION_MESSAGE);
+
+    dispose();
+
   }
-  
+
   private String getVisitRecord(Client patient) {
     String res = "";
     for (int i = 0; i < patient.getRecordHistory().size(); i++) {
@@ -105,23 +100,24 @@ dispose();
     }
     return res;
   }
+
   private List<String> getClinicClientNames() {
     List<String> names = new ArrayList<>();
-      // Replace this with your actual logic to get client names
-      // For now, returning a placeholder list
-    for(Client client : clinic.getClinicClients()) {
-      names.add(client.getFirstName() + " "  + client.getLastName());
+    // Replace this with your actual logic to get client names
+    // For now, returning a placeholder list
+    for (Client client : clinic.getClinicClients()) {
+      names.add(client.getFirstName() + " " + client.getLastName());
     }
-      return names;
+    return names;
   }
 
   private Client findClientByName(String firstName) {
-      for(Client client : clinic.getClinicClients()) {
-        String name = client.getFirstName() + " " + client.getLastName();
-        if (name.contains(firstName)) {
-          return client;
-        }
+    for (Client client : clinic.getClinicClients()) {
+      String name = client.getFirstName() + " " + client.getLastName();
+      if (name.contains(firstName)) {
+        return client;
       }
-      return null;
+    }
+    return null;
   }
 }
