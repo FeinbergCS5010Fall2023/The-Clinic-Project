@@ -334,6 +334,16 @@ public class Clinic implements ClinicFunctionality {
   }
 
   /**
+   * This method removes the room from the clinic.
+   * @param room is the room that is being removed.
+   */
+  public void removeClinicRoom(Room room) {
+    if (roomList.contains(room)) {
+      roomList.remove(room);
+    }
+  }
+
+  /**
    * This adds to the master room list. Execute a move in the position specified by the given row
    * and column.
    *

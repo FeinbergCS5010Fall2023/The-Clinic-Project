@@ -82,7 +82,7 @@ public class AddPatientToRoom extends JFrame {
       return;
     }
 
-    if (room.getStatus() == true) {
+    if (room.getStatus() == true && !room.getRoomName().contains("Waiting")) {
       JOptionPane.showMessageDialog(AddPatientToRoom.this, room.getRoomName() + " is full.",
           "Room Assignment unSuccessful", JOptionPane.INFORMATION_MESSAGE);
 

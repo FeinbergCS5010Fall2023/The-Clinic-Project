@@ -6,11 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -31,10 +33,11 @@ import javax.swing.SwingUtilities;
  * which this class implements.
  */
 public class ClinicConsoleController extends JFrame implements ClinicController {
+  private static JFrame frame;
   private static final long serialVersionUID = 1L;
   private final Appendable out;
   private final Scanner scan;
-  private JFrame frame;
+  
 
   /**
    * ClinicConsoleController to take in the input and output.
@@ -298,6 +301,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
 
   /**
    * This method is the functionality of the game that reads the file for the data.
+   * 
    * @param clinic is the clinic that it's going to be used.
    * @param input is file that it's going to read.
    */
@@ -379,7 +383,6 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
   }
 
   private JMenuBar createMenuBar(Clinic clinic) {
-    
 
     JMenuItem aboutItem = new JMenuItem("About Clinic");
     aboutItem.addActionListener(new ActionListener() {
@@ -394,6 +397,23 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
       @Override
       public void actionPerformed(ActionEvent e) {
         showRoomMap(clinic);
+      }
+    });
+
+    JMenuItem clearMap = new JMenuItem("Clear Room Map");
+    clearMap.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        clearRoom(clinic);
+      }
+
+    });
+    
+    JMenuItem loadFileItem = new JMenuItem("Load Clinic File");
+    loadFileItem.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        loadClinicFile();
       }
     });
 
@@ -453,7 +473,7 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
         }
       }
     });
-    
+
     JMenuItem saveLivesItem6 = new JMenuItem("Discharge Patient");
     saveLivesItem6.addActionListener(new ActionListener() {
       @Override
@@ -465,11 +485,13 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
         }
       }
     });
-    
+
     JMenu roomMapMenu = new JMenu("Room Map");
     JMenu aboutMenu = new JMenu("About");
     aboutMenu.add(aboutItem);
     roomMapMenu.add(roomMapItem);
+    roomMapMenu.add(clearMap);
+    roomMapMenu.add(loadFileItem);
     JMenu saveLivesMenu = new JMenu("Save Lives");
     saveLivesMenu.add(saveLivesItem1);
     saveLivesMenu.add(saveLivesItem3);
@@ -481,6 +503,36 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
     menuBar.add(roomMapMenu);
     menuBar.add(saveLivesMenu);
     return menuBar;
+  }
+
+  private void clearRoom(Clinic clinic) {
+
+    // Remove clinical patients and Remove visit records from everybody
+    clinic.getClinicClients().clear();
+    for (Client client : clinic.getClinicClients()) {
+      client.getRecordHistory().clear();
+    }
+
+    // Remove clinical staff members
+    clinic.getClinicStaffs().clear();
+
+    // Remove clinical rooms
+    clinic.getClinicRooms().clear();
+
+  }
+  
+  private static void loadClinicFile() {
+    JFileChooser fileChooser = new JFileChooser();
+    int result = fileChooser.showOpenDialog(frame);
+
+    if (result == JFileChooser.APPROVE_OPTION) {
+      File selectedFile = fileChooser.getSelectedFile();
+      Clinic clinic = new Clinic("Cybernetic Implant Clinic"); 
+      Readable input = new InputStreamReader(System.in);
+      Appendable output = System.out;
+      new ClinicConsoleController(input, output).playNewGame(clinic, selectedFile);
+    }
+
   }
 
   private void showAboutDialog(Clinic clinic) {
@@ -701,41 +753,6 @@ public class ClinicConsoleController extends JFrame implements ClinicController 
         new ViewPatientInformation(clinic);
       }
     });
-    /*
-     * Scanner scan = new Scanner(System.in);
-     * 
-     * boolean checkAnotherPatient = true;
-     * 
-     * while (checkAnotherPatient) { try { boolean firstCheck = false; Client patient = null; String
-     * firstName = ""; String lastName = "";
-     * 
-     * while (!firstCheck) { this.out.append("Please enter the First Name of the patient:\n");
-     * firstName = getValidNameInput();
-     * 
-     * this.out.append("Please enter the Last Name of the patient:\n"); lastName =
-     * getValidNameInput();
-     * 
-     * for (Client client : clinic.getClinicClients()) { if
-     * (client.getFirstName().contains(firstName) && client.getLastName().contains(lastName)) {
-     * patient = client; firstCheck = true; break; } }
-     * 
-     * if (!firstCheck) {
-     * this.out.append("Patient doesn't exist. Do you want to try again? (yes/no)"); String tryAgain
-     * = getValidNameInput(); if (!"yes".equalsIgnoreCase(tryAgain)) { return; // Return without
-     * removing a patient } } }
-     * 
-     * for (int i = 0; i < patient.getRecordHistory().size(); i++) {
-     * this.out.append(patient.getRecordHistory().get(i).toString()); } if (patient.getRecord() ==
-     * null) { this.out.append(patient.getFirstName() + ' ' + patient.getLastName() +
-     * " does not have a medical record with us.\n"); } boolean isOut = false; while (!isOut) {
-     * this.out.append("Do you want to check another patient's clinical record? (yes/no)"); String
-     * checkAnother = getValidNameInput(); if ("yes".equalsIgnoreCase(checkAnother)) {
-     * handleViewPatientRecordHistory(clinic); } else if ("no".equalsIgnoreCase(checkAnother)) {
-     * return; } else { this.out.append("That was not a valid response!\n"); } } scan.close(); }
-     * catch (NullPointerException e) { this.out.append("Error: " + e.getMessage() +
-     * ". Please try again.\n"); } catch (IllegalArgumentException e) { this.out.append("Error: " +
-     * e.getMessage() + ". Please try again.\n"); } }
-     */
   }
 
   /**

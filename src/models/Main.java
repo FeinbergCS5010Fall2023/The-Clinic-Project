@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -49,13 +48,6 @@ public class Main {
   }
 
   private static JMenuBar createMenuBar() {
-    JMenuItem clearRecordsItem = new JMenuItem("Clear Records");
-    clearRecordsItem.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        clearRecords();
-      }
-    });
 
     JMenuItem quitItem = new JMenuItem("Quit");
     quitItem.addActionListener(new ActionListener() {
@@ -74,7 +66,6 @@ public class Main {
     });
     JMenu fileMenu = new JMenu("File");
     fileMenu.add(loadFileItem);
-    fileMenu.add(clearRecordsItem);
     fileMenu.add(quitItem);
     JMenuBar menuBar = new JMenuBar();
     menuBar.add(fileMenu);
@@ -124,8 +115,4 @@ public class Main {
 
   }
 
-  private static void clearRecords() {
-    JOptionPane.showMessageDialog(frame, "Records cleared.", "Records Cleared",
-        JOptionPane.INFORMATION_MESSAGE);
-  }
 }
