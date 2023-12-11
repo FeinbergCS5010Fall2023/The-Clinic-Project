@@ -395,4 +395,22 @@ public class MockClinicControllerTest {
     assertEquals(expectedOutput, outputStream.toString());
   }
 
+  @Test
+  void testClearMapAction() throws IOException {
+      Clinic clinic = new Clinic("Test Clinic");
+      MockClinicController controller = new MockClinicController();
+      clinic.addClinicClient(new Client(1, "John", "Doe", "1990-01-01"));
+      clinic.addClinicClient(new Client(2, "Jane", "Smith", "1985-05-15"));
+
+      clinic.addClinicStaff(new Staff("Physician", "Dr. Alice", "Johnson"));
+      clinic.addClinicStaff(new Staff("Nurse", "Nurse Bob", "Smith"));
+
+      clinic.addClinicRoom(new Room(new int[]{1, 2, 3}, "Examination", "Exam Room 1"));
+      clinic.addClinicRoom(new Room(new int[]{4, 5, 6}, "Waiting", "Waiting Room"));
+      controller.simulateClearMapAction(clinic);
+      assertEquals(0, clinic.getClinicClients().size());
+      assertEquals(0, clinic.getClinicStaffs().size());
+      assertEquals(0, clinic.getClinicRooms().size());
+  }
+
 }
