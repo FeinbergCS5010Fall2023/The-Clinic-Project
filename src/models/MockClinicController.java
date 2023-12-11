@@ -22,6 +22,7 @@ public class MockClinicController extends JFrame implements ClinicController {
 
   /**
    * The constructor takes in two parameters.
+   * 
    * @param in that is type Readable.
    * @param out that is type Appendable.
    */
@@ -35,6 +36,7 @@ public class MockClinicController extends JFrame implements ClinicController {
 
   /**
    * This method defines the input and output parameters for the mock.
+   * 
    * @param in is a type Readable.
    * @param out is a type Appendable.
    */
@@ -44,9 +46,8 @@ public class MockClinicController extends JFrame implements ClinicController {
 
   /**
    * Constructs a new instance of the MockClinicController with default input and output streams.
-   * This constructor initializes the MockClinicController using the standard 
-   * input and output streams
-   * (System.in and System.out).
+   * This constructor initializes the MockClinicController using the standard input and output
+   * streams (System.in and System.out).
    */
   public MockClinicController() {
     this(System.in, System.out);
@@ -167,10 +168,10 @@ public class MockClinicController extends JFrame implements ClinicController {
   /**
    * Simulates the viewing of a patient's record history through the console.
    *
-   * This method displays a list of patient names from the given clinic, allows 
-   * the user to select a patient, retrieves and displays the selected patient's 
-   * information, including first name, last name, date of birth, and visit records. 
-   * The user is prompted to enter the number corresponding to the patient they want to view.
+   * This method displays a list of patient names from the given clinic, allows the user to select a
+   * patient, retrieves and displays the selected patient's information, including first name, last
+   * name, date of birth, and visit records. The user is prompted to enter the number corresponding
+   * to the patient they want to view.
    *
    * @param clinic The clinic instance containing patient information.
    * @throws IOException If an I/O error occurs while reading user input.
@@ -206,7 +207,7 @@ public class MockClinicController extends JFrame implements ClinicController {
     }
 
     // Find the selected patient
-    Client patient = findClientByName(clinic, patientNames.get(selectedPatientIndex - 1)); 
+    Client patient = findClientByName(clinic, patientNames.get(selectedPatientIndex - 1));
 
     if (patient == null) {
       System.out.println("Mock: Patient doesn't exist. Please try again.");
@@ -240,14 +241,13 @@ public class MockClinicController extends JFrame implements ClinicController {
     }
     return null;
   }
-  
+
   /**
    * Finds a client in the given clinic based on the provided first name.
    *
-   * This method iterates through the list of clients in the clinic, 
-   * concatenates the first name and last name of each client, and checks if 
-   * it contains the specified first name. If a match is found, the corresponding
-   * client is returned; otherwise, null is returned.
+   * This method iterates through the list of clients in the clinic, concatenates the first name and
+   * last name of each client, and checks if it contains the specified first name. If a match is
+   * found, the corresponding client is returned; otherwise, null is returned.
    *
    * @param firstName The first name to search for.
    * @param clinic The clinic instance containing the list of clients.
@@ -374,7 +374,6 @@ public class MockClinicController extends JFrame implements ClinicController {
     }
   }
 
-
   private Staff findStaffByName(String firstName, Clinic clinic) {
     for (Staff staff : clinic.getClinicStaffs()) {
       String name = staff.getFirstName() + " " + staff.getLastName();
@@ -384,13 +383,13 @@ public class MockClinicController extends JFrame implements ClinicController {
     }
     return null;
   }
-  
+
   /**
    * Finds a staff member in the clinic based on the provided first and last name.
    *
-   * Iterates through the list of clinic staff, checks if both first and last names match 
-   * the provided names. If a match is found, returns the corresponding staff member; 
-   * otherwise, returns null.
+   * Iterates through the list of clinic staff, checks if both first and last names match the
+   * provided names. If a match is found, returns the corresponding staff member; otherwise, returns
+   * null.
    *
    * @param firstName First name of the staff to search for.
    * @param lastName Last name of the staff to search for.
@@ -421,14 +420,12 @@ public class MockClinicController extends JFrame implements ClinicController {
     }
   }
 
-
-  
   /**
-   * Simulates the process of unassigning staff from a patient through a graphical 
-   * user interface (GUI). This method takes the clinic instance, patient's first 
-   * name, patient's last name, staff's first name, and staff's last name as parameters. 
-   * It then finds the corresponding patient and staff using the provided
-   * names, unassigns the staff from the patient, and prints a success message.
+   * Simulates the process of unassigning staff from a patient through a graphical user interface
+   * (GUI). This method takes the clinic instance, patient's first name, patient's last name,
+   * staff's first name, and staff's last name as parameters. It then finds the corresponding
+   * patient and staff using the provided names, unassigns the staff from the patient, and prints a
+   * success message.
    *
    * @param clinic The clinic instance containing patient and staff information.
    * @param patientFirstName The first name of the patient.
@@ -446,18 +443,17 @@ public class MockClinicController extends JFrame implements ClinicController {
         findStaffByName(staffFirstName, clinic), clinic);
     System.out.println("Mock: Successfully unassigned staff from the patient.");
   }
-  
+
   @Override
   public void handleUnassignStaffFromClient(Clinic clinic) throws IOException {
     return;
   }
-  
+
   private void unassignStaffFromPatient(Client patient, Staff staff, Clinic clinic) {
     clinic.removeStaffFromClient(staff, patient);
     System.out.println("Able to remove him\n");
 
   }
-  
 
   @Override
   public void displayGame(Clinic clinic) {
@@ -473,8 +469,7 @@ public class MockClinicController extends JFrame implements ClinicController {
 
     try {
       if (list.length() == 0) {
-        System.out.println(
-            "Mock: There are no patients that haven't visited the clinic for"
+        System.out.println("Mock: There are no patients that haven't visited the clinic for"
             + " more than 365 days from today.");
       } else {
         System.out.println("Mock: " + list);
@@ -506,8 +501,8 @@ public class MockClinicController extends JFrame implements ClinicController {
   /**
    * Handles the removal of a staff member from the clinic.
    *
-   * Takes clinic, discharge staff's first and last name as parameters.
-   * Finds the discharge staff, removes them from the clinic, and prints a success message.
+   * Takes clinic, discharge staff's first and last name as parameters. Finds the discharge staff,
+   * removes them from the clinic, and prints a success message.
    *
    * @param clinic Clinic instance containing staff information.
    * @param disChargeStaffFirstName First name of the staff to be removed.
@@ -534,14 +529,12 @@ public class MockClinicController extends JFrame implements ClinicController {
       System.out.println("Error: " + e.getMessage() + ". Please try again.\n");
     }
   }
-  
+
   @Override
   public void handleRemoveStaff(Clinic clinic) throws IOException {
 
     return;
   }
-
-
 
   @Override
   public String displayRoomInfo(Room room, Clinic clinic) {
@@ -722,7 +715,6 @@ public class MockClinicController extends JFrame implements ClinicController {
 
     return;
   }
-  
 
   private String getValidNameInput() throws IOException {
     String input;
@@ -736,6 +728,23 @@ public class MockClinicController extends JFrame implements ClinicController {
     }
   }
 
+  /**
+   * Simulates the action of clearing the map of a clinic.
+   * This method clears the list of clients, client record history,
+   * staff members, and rooms in the provided clinic.
+   *
+   * @param clinic The clinic to perform the simulated clear map action on.
+   */
+  public void simulateClearMapAction(Clinic clinic) {
+    System.out.println("Mock: Simulating the clearMap action");
+    clinic.getClinicClients().clear();
+    for (Client client : clinic.getClinicClients()) {
+      client.getRecordHistory().clear();
+    }
+    clinic.getClinicStaffs().clear();
+    clinic.getClinicRooms().clear();
+
+    System.out.println("Mock: Clinic map cleared successfully");
+  }
 
 }
-
