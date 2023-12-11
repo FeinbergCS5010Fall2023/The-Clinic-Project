@@ -90,7 +90,7 @@ public class AssignStaffToPatient extends JFrame {
     // Find the selected staff member
     Staff staffApproval = findStaffByName(disChargeStaffFirstName);
 
-    if (staffApproval == null || !staffApproval.getFirstName().contains("Dr.")) {
+    if (staffApproval == null) {
       JOptionPane.showMessageDialog(AssignStaffToPatient.this,
           "Staff doesn't exist or is not approved to discharge patients. Please try again.",
           "Error", JOptionPane.ERROR_MESSAGE);
