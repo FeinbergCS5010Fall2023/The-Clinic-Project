@@ -17,7 +17,6 @@ assignments. This was accomplished using java's JFrame library as well as
 including features and functionality from java swing.
 
 
-
 ### List of Features
 The features that are included with Milestone 4 include:
 1. A welcome screen that contains instructions for starting the game and
@@ -38,9 +37,13 @@ The features that are included with Milestone 4 include:
     * Number of rooms
 
 ### How to Run
+In order to run Milestone4.jar, which is included in the res folder, you must run the
+following command in the command prompt:
 
+cd /directory/with/JARfile java -jar Milestone4.jar
 
-
+This will then prompt you to the welcome screen to begin the game. Instructions for
+using the game are included below.
 
 ### How to Use the Program
 When you run the JAR file, you will be greeted with the welcome page. From there,
@@ -63,27 +66,47 @@ the clinical staff members assigned to them will be reassigned to that room.
 
 
 ### Example Runs
+Within the res/ folder is the example run that contains a .png of running through all of the methods that were implemented in this milestone. It demonstrates the following:
+1. Register a patient into the clinic.
+2. Assign a clinical staff member to a patient.
+3. Display the information/visit record of an existing patient.
+4. Unassign a clinical staff member to a patient.
+5. Discharge a patient from the clinic.
 
-List any example runs that you have in res/ directory and provide a description of what each example represents or does. Make sure that your example runs are provided as *plain text files*.
-
+In the example run, we have a patient, Phil, who has been registered into the clinic due to his 40 degree celsius fever. He is assigned to Dr. Amy Angiush and is taken into the 
+Triage where Dr. Amy Anguish gives him the necessary medical attention required to reduce his fever. Phil is then discharged from the clinic; however, finds himself back at the
+clinic when he finds out that he has tested positive for COVID. Dr. Amy Anguish is once again assigned to Phil and she checks his medical history to determine if he has had COVID
+previously. Upon investigation, she concludes that he hasn't had COVID previously, gave him the necessary medical attention, and discharged him. This concludes the example run.
 
 
 ### Design/Model Changes
 
-Document what changes you have made from earlier designs. Why did you make those changes? Keep an on-going list using some form of versioning so it is clear when these changes occurred.
-
+The most significant design/model change involved displaying the clinic's room placement. We decided to replace Phil's design with Michael's design. The reason for this was because my design was not appearing in the format that we wanted it to, but Michael's design was so we added his design to the implementation.
 
 
 ### Assumptions
 
-List any assumptions that you made during program development and implementations. Be sure that these do not conflict with the requirements of the project.
-
+There were a few assumptions that were made when developing 
+this program:
+1. Occupations of the staff members could only be either a
+   "receptionist", "physician", or "nurse".
+   * The way my method is structured, it doesn't allow any
+     other occupations to be registered as a clinical staff
+2. Add Room is used for testing purposes only.
+   * This was a method that was implemented to public access
+     under the assumption that nobody needs to add a room.
+     It's only use was for testing and nothing more. Users
+     should not have the power to add rooms to the clinic.
+3. The file being read is of the right format.
+   * There are no verifications to identify if the format
+     of the .txt file is of the correct format.
 
 
 ### Limitations
 
-What limitations exist in your program. This should include any requirements that were *not* implemented or were not working correctly (including something that might work some of the time).
-
+The functionality for this program works and functions 
+exactly as intended, according to the list of requirements
+from the assignment description.
 
 
 ### Citations
