@@ -722,7 +722,18 @@ public class MockClinicController extends JFrame implements ClinicController {
 
     return;
   }
-  
+
+  public void simulateClearMapAction(Clinic clinic) {
+      System.out.println("Mock: Simulating the clearMap action");
+      clinic.getClinicClients().clear();
+      for (Client client : clinic.getClinicClients()) {
+          client.getRecordHistory().clear();
+      }
+      clinic.getClinicStaffs().clear();
+      clinic.getClinicRooms().clear();
+
+      System.out.println("Mock: Clinic map cleared successfully");
+  }
 
   private String getValidNameInput() throws IOException {
     String input;
