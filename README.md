@@ -111,7 +111,5 @@ from the assignment description.
 
 ### Citations
 
-Be sure to cite your sources. A good guideline is if you take more than three lines of code from some source, you must include the information on where it came from. Citations should use proper [IEEE citation guidelines](https://ieee-dataport.org/sites/default/files/analysis/27/IEEE Citation Guidelines.pdf) and should include references (websites, papers, books, or other) for ***any site that you used to research a solution***. For websites, this includes name of website, title of the article, the url, and the date of retrieval**.** Citations should also include a qualitative description of what you used, and what you changed/contributed.
-
-
+[1] “API reference for Java Platform, Standard Edition,” Moved, https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/JMenu.html (accessed Dec. 11, 2023). 
 
